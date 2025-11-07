@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiber Fit Aata - Millets in Every Meal | Organic & Sustainable</title>
+  <meta name="description" content="Discover the ancient wisdom of millets with Fiber Fit Aata. Premium organic millets for sustained energy, better health, and sustainable living.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'warm-cream': '#F7F3E9',
+            'rich-brown': '#8B4513',
+            'golden-wheat': '#D4A574',
+            'deep-earth': '#5D4037',
+            'soft-sage': '#A8B5A0',
+            'warm-sand': '#E6D7C3',
+            'muted-copper': '#B87333',
+            'cream-white': '#FEFCF8'
+          },
+          fontFamily: {
+            'handwritten': ['Caveat', 'Kalam', 'cursive'],
+            'body': ['Inter', 'Source Sans Pro', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+  <style>
+    /* existing visual styles */
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(212, 165, 116, 0.1) 100%);
+    }
+    .grain-texture {
+      background-image:
+        radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+    }
+    .animate-in { animation: slideInUp 0.6s ease-out forwards; }
+    @keyframes slideInUp { from { opacity:0; transform:translateY(30px);} to { opacity:1; transform:translateY(0);} }
+    .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(139,69,19,0.15); }
+    .pulse-glow { animation: pulseGlow 2s ease-in-out infinite alternate; }
+    @keyframes pulseGlow { from { box-shadow: 0 0 20px rgba(212,165,116,0.3);} to { box-shadow:0 0 30px rgba(212,165,116,0.6);} }
+    .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .cart-count { background:#D4A574; color:white; border-radius:50%; width:20px; height:20px; font-size:12px; display:flex; align-items:center; justify-content:center; position:absolute; top:-8px; right:-8px; }
+    .splide__slide img { border-radius: 12px; }
+   .hero-image {
+  object-position: center;
+  filter: sepia(20%) saturate(130%) brightness(85%) contrast(110%);
+}
+
+
+    /* ---------- Image aspect utilities ---------- */
+    /* 4:5 aspect wrapper used for product images (grid, carousel, modal) */
+    .img-4-5 {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      display: block;
+      border-radius: 0.75rem;
+      background-color: #FEFCF8;
+    }
+    .img-4-5 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    /* fallback for older browsers */
+    .img-4-5.fallback { position: relative; padding-bottom: calc(100% * 5 / 4); }
+    .img-4-5.fallback img { position:absolute; top:0; left:0; width:100%; height:100%; }
+
+    /* square profile images 1:1 */
+    .img-square {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      display: block;
+      background: #FEFCF8;
+    }
+    .img-square img {
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: center;
+      display:block;
+    }
+
+    /* product card tweaks */
+    .product-card { background: white; border-radius: 0.75rem; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .product-card .card-body { padding: 1rem; }
+
+    /* modal tweaks */
+    #product-modal { z-index: 60; }
+    @media (max-width: 768px) { .product-modal .img-4-5 { max-width: 100%; } }
+
+    /* team grid */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; }
+  </style>
+</head>
+<body class="bg-warm-cream text-rich-brown font-body">
+  <!-- Navigation (unchanged) -->
+  <nav class="bg-cream-white shadow-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-handwritten font-bold text-rich-brown">
+            <img src="assets/images/logo.png" style="max-height:60px;" alt="Fiber Fit Aata logo"/>
+          </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-rich-brown hover:text-golden-wheat transition-colors font-medium">Home</a>
+          <a href="story.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Our Story</a>
+          <a href="why-millets.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Why Millets</a>
+          <a href="products.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Products</a>
+          <a href="recipes.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Recipes</a>
+          <a href="blog.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Blog</a>
+          <a href="contact.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Contact</a>
+          <div class="relative">
+            <button id="cart-toggle" class="flex items-center space-x-1 text-rich-brown hover:text-golden-wheat transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h7a2 2 0 002-2v-4"></path></svg>
+              <span class="cart-count hidden">0</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-rich-brown">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-cream-white border-t">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Home</a>
+        <a href="story.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Our Story</a>
+        <a href="why-millets.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Why Millets</a>
+        <a href="products.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Products</a>
+        <a href="recipes.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Recipes</a>
+        <a href="blog.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Blog</a>
+        <a href="contact.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero (unchanged) -->
+  <section class="hero-section relative min-h-screen flex items-center hero-bg grain-texture">
+    <div class="absolute inset-0">
+      <img src="assets/images/hero-millets.jpg" alt="Millet grains and organic ingredients" class="w-full h-full object-cover hero-image opacity-10">
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <h1 class="text-4xl md:text-6xl font-handwritten font-bold mb-6 text-rich-brown">
+            <span id="hero-typed" class="text-golden-wheat"></span>
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-deep-earth leading-relaxed">
+            Discover the ancient wisdom of millets for modern wellness. 
+            <span class="font-semibold text-golden-wheat">Sustainable nutrition</span> that nourishes your body and the planet.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            <a href="products.html" class="bg-golden-wheat text-cream-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-muted-copper transition-colors duration-300 pulse-glow">Shop Millets</a>
+            <a href="why-millets.html" class="border-2 border-rich-brown text-rich-brown px-8 py-4 rounded-lg text-lg font-semibold hover:bg-rich-brown hover:text-cream-white transition-colors duration-300">Learn Benefits</a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-8 text-center">
+            <div class="scroll-animate">
+              <div class="text-3xl font-bold text-golden-wheat counter" data-target="10" data-duration="2000">0</div>
+              <div class="text-sm text-deep-earth">Millet Varieties</div>
+            </div>
+            <div class="scroll-animate">
+              <div class="text-3xl font-bold text-golden-wheat counter" data-target="500" data-duration="2500">0</div>
+              <div class="text-sm text-deep-earth">Happy Customers</div>
+            </div>
+            <div class="scroll-animate">
+              <div class="text-3xl font-bold text-golden-wheat counter" data-target="70" data-duration="2000">0</div>
+              <div class="text-sm text-deep-earth">% Water Saved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-animate">
+          <div class="bg-cream-white rounded-2xl p-8 shadow-xl hover-lift">
+            <div class="text-center mb-6">
+              <img src="assets/images/products/ragi.png" alt="Organic Ragi Flour" class="w-32 h-32 object-cover rounded-lg mx-auto mb-4">
+              <h3 class="text-2xl font-bold text-rich-brown mb-2">Organic Ragi Flour</h3>
+              <p class="text-deep-earth mb-4">Calcium-rich finger millet flour for strong bones and sustained energy</p>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center text-sm text-deep-earth">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                10x more calcium than wheat
+              </div>
+              <div class="flex items-center text-sm text-deep-earth">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                Gluten-free & diabetic-friendly
+              </div>
+              <div class="flex items-center text-sm text-deep-earth">
+                <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                Traditional stone-ground processing
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="text-2xl font-bold text-golden-wheat mb-2">₹89</div>
+              <button onclick="addToCart('ragi-flour')" class="w-full bg-golden-wheat text-cream-white py-3 px-6 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Carousel (images use 4:5 wrapper) -->
+  <section class="py-16 bg-cream-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 scroll-animate">
+        <h2 class="text-3xl md:text-4xl font-handwritten font-bold text-rich-brown mb-4">Our Millet Collection</h2>
+        <p class="text-lg text-deep-earth max-w-2xl mx-auto">Discover our carefully curated selection of premium organic millets.</p>
+      </div>
+
+      <div class="splide" id="product-carousel">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <!-- carousel items: use img-4-5 wrapper for consistent ratio -->
+            <li class="splide__slide">
+              <div class="bg-warm-cream rounded-lg p-6 hover-lift h-full">
+                <div class="img-4-5 mb-4"><img src="assets/images/products/premium-jowar.png" alt="Jowar Flour"></div>
+                <h3 class="font-bold text-lg mb-2">Premium Jowar Flour</h3>
+                <p class="text-sm text-deep-earth mb-3">Heart-healthy sorghum flour, perfect for gluten-free baking</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xl font-bold text-golden-wheat">₹95</span>
+                  <button onclick="addToCart('jowar-flour')" class="bg-golden-wheat text-cream-white px-4 py-2 rounded hover:bg-muted-copper transition-colors">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+
+            <li class="splide__slide">
+              <div class="bg-warm-cream rounded-lg p-6 hover-lift h-full">
+                <div class="img-4-5 mb-4"><img src="assets/images/products/bajra.png" alt="Bajra Flour"></div>
+                <h3 class="font-bold text-lg mb-2">Traditional Bajra Flour</h3>
+                <p class="text-sm text-deep-earth mb-3">Iron-rich pearl millet, energy-boosting winter staple</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xl font-bold text-golden-wheat">₹78</span>
+                  <button onclick="addToCart('bajra-flour')" class="bg-golden-wheat text-cream-white px-4 py-2 rounded hover:bg-muted-copper transition-colors">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+
+            <!-- more slides... -->
+            <li class="splide__slide">
+              <div class="bg-warm-cream rounded-lg p-6 hover-lift h-full">
+                <div class="img-4-5 mb-4"><img src="assets/images/products/foxtail.png" alt="Foxtail Millet"></div>
+                <h3 class="font-bold text-lg mb-2">Foxtail Millet Grain</h3>
+                <p class="text-sm text-deep-earth mb-3">Low glycemic index, diabetic-friendly alternative to rice</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xl font-bold text-golden-wheat">₹125</span>
+                  <button onclick="addToCart('foxtail-millet')" class="bg-golden-wheat text-cream-white px-4 py-2 rounded hover:bg-muted-copper transition-colors">Add to Cart</button>
+                </div>
+              </div>
+            </li>
+
+            <!-- extra slides omitted for brevity in sample, keep same pattern -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="products.html" class="inline-block bg-rich-brown text-cream-white px-8 py-3 rounded-lg font-semibold hover:bg-deep-earth transition-colors duration-300">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Benefits (unchanged) -->
+  <section class="py-16 bg-warm-cream grain-texture">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 scroll-animate">
+        <h2 class="text-3xl md:text-4xl font-handwritten font-bold text-rich-brown mb-4">Why Choose Millets?</h2>
+        <p class="text-lg text-deep-earth max-w-3xl mx-auto">Millets are nutritional powerhouses that have sustained civilizations for thousands of years.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-cream-white rounded-lg p-6 text-center hover-lift scroll-animate">
+          <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-rich-brown mb-2">Gluten-Free</h3>
+          <p class="text-deep-earth text-sm">Perfect for those with celiac disease or gluten sensitivity</p>
+        </div>
+
+        <div class="bg-cream-white rounded-lg p-6 text-center hover-lift scroll-animate">
+          <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-rich-brown mb-2">High Fiber</h3>
+          <p class="text-deep-earth text-sm">Promotes digestive health and keeps you feeling full longer</p>
+        </div>
+
+        <div class="bg-cream-white rounded-lg p-6 text-center hover-lift scroll-animate">
+          <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-rich-brown mb-2">Heart Healthy</h3>
+          <p class="text-deep-earth text-sm">Rich in magnesium and potassium for cardiovascular health</p>
+        </div>
+
+        <div class="bg-cream-white rounded-lg p-6 text-center hover-lift scroll-animate">
+          <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-rich-brown mb-2">Low Glycemic</h3>
+          <p class="text-deep-earth text-sm">Ideal for diabetes management and blood sugar control</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="why-millets.html" class="inline-block bg-rich-brown text-cream-white px-8 py-3 rounded-lg font-semibold hover:bg-deep-earth transition-colors duration-300">Learn More About Benefits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability & Recipe sections omitted (kept same as your original) -->
+  <!-- Team Section (NEW) -->
+  <section class="py-16 bg-cream-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-handwritten font-bold text-rich-brown mb-2">👥 Meet the FiberFit Aata Team</h2>
+        <p class="text-deep-earth max-w-2xl mx-auto">Young Minds. Bold Ideas. A Healthier Tomorrow.</p>
+      </div>
+
+      <div class="team-grid mb-8">
+        <!-- JP Reddy -->
+        <div class="bg-warm-cream rounded-lg p-4 text-center hover-lift">
+          <div class="img-square mb-4"><img src="assets/images/team/jp.jpg" alt="J.P. Reddy"></div>
+          <h4 class="font-bold text-lg">🌾 J.P. Reddy</h4>
+          <p class="text-sm text-deep-earth mb-2">Vision & Product Innovation Lead</p>
+          <p class="text-sm text-gray-600">A passionate and dedicated mind who constantly thinks beyond limits. JP drives the team with creativity, determination, and a vision to make every household healthier through innovation.</p>
+        </div>
+
+        <!-- Raviteja -->
+        <div class="bg-warm-cream rounded-lg p-4 text-center hover-lift">
+          <div class="img-square mb-4"><img src="assets/images/team/ravi.jpg" alt="Raviteja"></div>
+          <h4 class="font-bold text-lg">🧠 Raviteja</h4>
+          <p class="text-sm text-deep-earth mb-2">Strategy & Market Insights Head</p>
+          <p class="text-sm text-gray-600">A sharp strategic thinker with deep analytical skills. Raviteja focuses on turning ideas into actionable outcomes.</p>
+        </div>
+
+        <!-- Pranav -->
+        <div class="bg-warm-cream rounded-lg p-4 text-center hover-lift">
+          <div class="img-square mb-4"><img src="assets/images/team/pranav.jpg" alt="Pranav"></div>
+          <h4 class="font-bold text-lg">⚙ Pranav</h4>
+          <p class="text-sm text-deep-earth mb-2">Operations & Quality Management Lead</p>
+          <p class="text-sm text-gray-600">Calm, committed, and detail-oriented, Pranav ensures that every stage-from sourcing to packaging-reflects perfection and consistency in product quality.</p>
+        </div>
+
+        <!-- Roopa -->
+        <div class="bg-warm-cream rounded-lg p-4 text-center hover-lift">
+          <div class="img-square mb-4"><img src="assets/images/team/roopa.jpg" alt="Roopa"></div>
+          <h4 class="font-bold text-lg">💬 Roopa</h4>
+          <p class="text-sm text-deep-earth mb-2">Communications & Brand Relations Head</p>
+          <p class="text-sm text-gray-600">A confident communicator and empathetic listener. Roopa brings life to FiberFit’s story through engaging interactions and partnerships.</p>
+        </div>
+      </div>
+
+      <div class="max-w-3xl mx-auto text-center text-deep-earth">
+        <h3 class="text-lg font-semibold mb-2">🌱 About Our Team</h3>
+        <p class="mb-2">We are a group of four passionate agri-business management students from Sagar Group of Institutions – FABS, united by one goal: to bring health, sustainability, and innovation together in the everyday staple - Aata. Our combined strengths in product development, strategy, operations, and communication make FiberFit Aata more than just a brand - it’s a movement toward mindful, nutritious living.</p>
+        <p class="italic">“Young Minds. Bold Ideas. A Healthier Tomorrow.”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter & Footer (kept largely same as original) -->
+  <section class="py-16 bg-cream-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="scroll-animate">
+        <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Stay Connected</h2>
+        <p class="text-lg text-deep-earth mb-8">Get the latest recipes, health tips, and sustainable living insights delivered to your inbox.</p>
+
+        <form class="max-w-md mx-auto flex gap-4" onsubmit="event.preventDefault(); showNotification('Subscribed!','success'); this.reset();">
+          <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg border border-warm-sand focus:outline-none focus:ring-2 focus:ring-golden-wheat" required>
+          <button type="submit" class="bg-golden-wheat text-cream-white px-6 py-3 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">Subscribe</button>
+        </form>
+
+        <p class="text-sm text-gray-500 mt-4">No spam, unsubscribe anytime. Your privacy is important to us.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-rich-brown text-cream-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-2xl font-handwritten font-bold mb-4">🌾 Fiber Fit Aata</h3>
+          <p class="text-warm-sand mb-4">Bringing ancient wisdom to modern tables through sustainable, organic millets that nourish both body and planet.</p>
+          <div class="flex space-x-4">
+            <!-- social icons -->
+            <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">[T]</a>
+            <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">[F]</a>
+            <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">[I]</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="products.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Products</a></li>
+            <li><a href="recipes.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Recipes</a></li>
+            <li><a href="blog.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Blog</a></li>
+            <li><a href="contact.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+          <div class="space-y-2 text-warm-sand">
+            <p>📧 hello@fiberfitaata.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Hyderabad, Telangana</p>
+            <p>🕒 Mon-Sat: 9AM-6PM</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Support</h4>
+          <p class="text-warm-sand">Need help? <a href="contact.html" class="underline">Contact us</a></p>
+        </div>
+      </div>
+
+      <div class="border-t border-deep-earth mt-8 pt-8 text-center">
+        <p class="text-warm-sand">© 2024 Fiber Fit Aata. All rights reserved. Made with ❤️ for sustainable living.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-cream-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6 border-b border-warm-sand">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold text-rich-brown">Shopping Cart</h3>
+        <button id="cart-close" class="text-gray-400 hover:text-gray-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="mt-2">
+        <span class="text-sm text-gray-600">Total: </span>
+        <span class="cart-total font-semibold text-golden-wheat">₹0.00</span>
+      </div>
+    </div>
+
+    <div class="p-6 flex-1 overflow-y-auto">
+      <div id="cart-items"></div>
+    </div>
+
+    <div class="p-6 border-t border-warm-sand">
+      <button class="w-full bg-golden-wheat text-cream-white py-3 px-4 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Product modal (keeps 4:5 ratio) -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-6">
+    <div class="absolute inset-0 bg-black/40" id="product-modal-backdrop"></div>
+    <div class="relative max-w-4xl w-full bg-cream-white rounded-lg shadow-xl p-6 product-modal">
+      <button id="product-modal-close" aria-label="Close product details" class="absolute right-4 top-4 text-rich-brown text-xl">✕</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div>
+          <div id="product-modal-image" class="img-4-5"></div>
+        </div>
+        <div>
+          <h2 id="product-modal-name" class="text-2xl font-bold text-rich-brown"></h2>
+          <p id="product-modal-desc" class="text-deep-earth mt-3"></p>
+          <div class="mt-4"><span id="product-modal-price" class="text-xl font-semibold text-golden-wheat"></span></div>
+          <div class="mt-6 space-x-3">
+            <button id="product-modal-add" class="bg-golden-wheat text-cream-white px-4 py-2 rounded-lg">Add to cart</button>
+            <button id="product-modal-visit" class="px-4 py-2 border rounded-lg">View product page</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JS (integrated and updated) -->
+  <script>
+  // ---------- app state ----------
+  let cart = JSON.parse(localStorage.getItem('fiberFitCart')) || [];
+  let products = [];
+  let recipes = [];
+  let blogPosts = [];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+  });
+
+  async function initializeApp() {
+    try {
+      await loadData();
+      updateCartDisplay();
+      const currentPage = getCurrentPage();
+      switch(currentPage) {
+        case 'index': initializeHomePage(); break;
+        case 'products': initializeProductsPage(); break;
+        case 'recipes': initializeRecipesPage(); break;
+        case 'why-millets': initializeWhyMilletsPage(); break;
+        case 'blog': initializeBlogPage(); break;
+      }
+      initializeAnimations();
+      initializeScrollEffects();
+      initializeNavigation();
+
+      // Normalize images & attach handlers (so any pre-rendered images also get correct wrappers)
+      setTimeout(() => {
+        if (window.productImageUtilities) {
+          productImageUtilities.normalizeProductImages();
+          productImageUtilities.attachDelegatedHandlers();
+        }
+      }, 100);
+    } catch (err) { console.error('Error initializing app:', err); }
+  }
+
+  async function loadData() {
+    try {
+      if (window.location && window.location.protocol === 'file:') {
+        await loadLocalFallbackScript();
+        products = window.__fiberFit_fallback?.products || [];
+        recipes = window.__fiberFit_fallback?.recipes || [];
+        blogPosts = window.__fiberFit_fallback?.blogPosts || [];
+        return;
+      }
+      const [productsResponse, recipesResponse, blogResponse] = await Promise.all([
+        fetch('data/products.json'),
+        fetch('data/recipes.json'),
+        fetch('data/blog-posts.json')
+      ]);
+      products = (await productsResponse.json()).products;
+      recipes = (await recipesResponse.json()).recipes;
+      blogPosts = (await blogResponse.json()).blogPosts;
+    } catch (err) {
+      console.error('Error loading data:', err);
+      loadFallbackData();
+    }
+  }
+
+  function loadLocalFallbackScript() {
+    return new Promise((resolve, reject) => {
+      if (window.__fiberFit_fallback) return resolve();
+      const script = document.createElement('script');
+      script.src = 'data/fallback-data.js';
+      script.onload = () => resolve();
+      script.onerror = e => reject(e);
+      document.head.appendChild(script);
+    });
+  }
+
+  function loadFallbackData() {
+    products = [];
+    recipes = [];
+    blogPosts = [];
+  }
+
+  function getCurrentPage() {
+    const path = window.location.pathname;
+    if (path.includes('products')) return 'products';
+    if (path.includes('recipes')) return 'recipes';
+    if (path.includes('why-millets')) return 'why-millets';
+    if (path.includes('blog')) return 'blog';
+    if (path.includes('story')) return 'story';
+    if (path.includes('contact')) return 'contact';
+    return 'index';
+  }
+
+  // ---------- Cart ----------
+  function addToCart(productId, quantity = 1, size = null) {
+    // productId might be string, match accordingly
+    const product = products.find(p => String(p.id) === String(productId) || p.sku === productId);
+    if (!product) {
+      // If product is not found (e.g., adding featured product by string id like 'ragi-flour'), add lightweight entry:
+      const fallback = { id: productId, name: productId, price: 0, image: '' };
+      cart.push({ ...fallback, quantity });
+      updateCartDisplay(); saveCart(); showCartNotification(fallback.name);
+      return;
+    }
+    const existing = cart.find(item => String(item.id) === String(productId) && item.size === size);
+    if (existing) existing.quantity += quantity;
+    else cart.push({ id: productId, name: product.name, price: product.price || 0, image: product.image || '', size, quantity });
+    updateCartDisplay(); saveCart(); showCartNotification(product.name);
+  }
+
+  function removeFromCart(productId, size = null) { cart = cart.filter(item => !(String(item.id) === String(productId) && item.size === size)); updateCartDisplay(); saveCart(); }
+  function updateCartQuantity(productId, size, newQuantity) {
+    const item = cart.find(i => String(i.id) === String(productId) && i.size === size);
+    if (!item) return;
+    if (newQuantity <= 0) removeFromCart(productId, size);
+    else { item.quantity = newQuantity; updateCartDisplay(); saveCart(); }
+  }
+  function updateCartDisplay() {
+    const cartCount = cart.reduce((sum, it) => sum + (it.quantity||0), 0);
+    const cartTotal = cart.reduce((sum, it) => sum + ((it.price || 0) * (it.quantity || 0)), 0);
+    document.querySelectorAll('.cart-count').forEach(el => { el.textContent = cartCount; el.style.display = cartCount > 0 ? 'block' : 'none'; });
+    document.querySelectorAll('.cart-total').forEach(el => el.textContent = `₹${cartTotal.toFixed(2)}`);
+    const cartItemsContainer = document.getElementById('cart-items');
+    if (cartItemsContainer) renderCartItems(cartItemsContainer);
+  }
+  function renderCartItems(container) {
+    if (cart.length === 0) {
+      container.innerHTML = `<div class="text-center py-8"><p class="text-gray-600">Your cart is empty</p><p class="text-sm text-gray-500 mt-2">Add some delicious millets to get started!</p></div>`;
+      return;
+    }
+    container.innerHTML = cart.map(item => `
+      <div class="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+        <div class="flex-1">
+          <h4 class="font-medium text-sm text-gray-900">${item.name}</h4>
+          ${item.size ? `<p class="text-xs text-gray-500">Size: ${item.size}</p>` : ''}
+          <p class="text-sm font-semibold text-green-600">₹${item.price}</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="updateCartQuantity('${item.id}', '${item.size}', ${item.quantity - 1})" class="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300">-</button>
+          <span class="text-sm font-medium">${item.quantity}</span>
+          <button onclick="updateCartQuantity('${item.id}', '${item.size}', ${item.quantity + 1})" class="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300">+</button>
+        </div>
+        <button onclick="removeFromCart('${item.id}', '${item.size}')" class="text-red-500 hover:text-red-700 text-xs">×</button>
+      </div>
+    `).join('');
+  }
+  function saveCart() { localStorage.setItem('fiberFitCart', JSON.stringify(cart)); }
+  function showCartNotification(productName) {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+    notification.innerHTML = `<div class="flex items-center space-x-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg><span>Added ${productName} to cart!</span></div>`;
+    document.body.appendChild(notification);
+    setTimeout(()=>{ notification.style.transform='translateX(0)'; },100);
+    setTimeout(()=>{ notification.style.transform='translateX(100%)'; setTimeout(()=>notification.remove(),300); },3000);
+  }
+
+  // ---------- Filtering ----------
+  function filterProducts(category='all', searchTerm='') {
+    let filtered = products;
+    if (category !== 'all') filtered = filtered.filter(p => p.category === category);
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(p => (p.name||'').toLowerCase().includes(term) || (p.description||'').toLowerCase().includes(term) || (p.healthBenefits||[]).some(h=>h.toLowerCase().includes(term)));
+    }
+    return filtered;
+  }
+
+  // ---------- Page initialization ----------
+  function initializeNavigation() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartClose = document.getElementById('cart-close');
+    if (cartToggle && cartSidebar) cartToggle.addEventListener('click', () => cartSidebar.classList.toggle('translate-x-full'));
+    if (cartClose) cartClose.addEventListener('click', () => cartSidebar.classList.add('translate-x-full'));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e){ e.preventDefault(); const target=document.querySelector(this.getAttribute('href')); if(target) target.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+  }
+
+  function initializeAnimations() {
+    if (typeof anime !== 'undefined') {
+      anime({ targets: '.fade-in', opacity:[0,1], translateY:[20,0], duration:800, delay: anime.stagger(100), easing:'easeOutQuart' });
+      anime({ targets: '.scale-in', scale:[0.9,1], opacity:[0,1], duration:600, delay: anime.stagger(50), easing:'easeOutBack' });
+    }
+    if (typeof Typed !== 'undefined') {
+      const heroTyped = document.getElementById('hero-typed');
+      if (heroTyped) new Typed('#hero-typed', { strings:['Millets in Every Meal','Ancient Wisdom, Modern Health','Sustainable Nutrition for All'], typeSpeed:50, backSpeed:30, backDelay:2000, loop:true, showCursor:true, cursorChar:'|' });
+    }
+  }
+
+  function initializeScrollEffects() {
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          if (entry.target.classList.contains('counter')) animateCounter(entry.target);
+          if (entry.target.classList.contains('progress-bar')) animateProgressBar(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.scroll-animate, .counter, .progress-bar').forEach(el=> observer.observe(el));
+  }
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target) || 0, duration = parseInt(el.dataset.duration) || 2000;
+    if (typeof anime !== 'undefined') { anime({ targets: el, innerHTML: [0, target], duration, round:1, easing:'easeOutQuart' }); }
+    else {
+      let current=0; const inc = target/(duration/16);
+      const t=setInterval(()=>{ current+=inc; if(current>=target){ current=target; clearInterval(t);} el.textContent=Math.floor(current); },16);
+    }
+  }
+  function animateProgressBar(el){ const target = parseInt(el.dataset.progress)||0; if(typeof anime!=='undefined'){ anime({ targets: el, width:`${target}%`, duration:1500, easing:'easeOutQuart' }); } else el.style.width=`${target}%`; }
+
+  // ---------- Home page ----------
+  function initializeHomePage(){
+    if (typeof Splide !== 'undefined') { const productCarousel = document.getElementById('product-carousel'); if (productCarousel) new Splide('#product-carousel', { type:'loop', perPage:4, perMove:1, gap:'1rem', autoplay:true, interval:3000, breakpoints:{768:{ perPage:2 }, 480:{ perPage:1 } } }).mount(); }
+    const hero = document.querySelector('.hero-section');
+    if (hero) window.addEventListener('scroll', ()=> { const scrolled = window.pageYOffset; const rate = scrolled * -0.5; hero.style.transform = `translateY(${rate}px)`; });
+  }
+
+  // ---------- Products page ----------
+  function initializeProductsPage() {
+    renderProducts();
+    const categoryFilter = document.getElementById('category-filter');
+    const searchInput = document.getElementById('search-input');
+    if (categoryFilter) categoryFilter.addEventListener('change', applyFilters);
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+  }
+
+  function applyFilters() {
+    const category = document.getElementById('category-filter')?.value || 'all';
+    const searchTerm = document.getElementById('search-input')?.value || '';
+    const filtered = filterProducts(category, searchTerm);
+    renderProducts(filtered);
+  }
+
+  // Updated renderProducts: emits data-product-json, uses img-4-5 wrapper (4:5 ratio)
+  function renderProducts(productsToRender = products) {
+    const container = document.getElementById('products-grid');
+    if (!container) return;
+    // guard empty
+    if (!Array.isArray(productsToRender)) productsToRender = [];
+    container.innerHTML = productsToRender.map(product => {
+      const safeJson = JSON.stringify({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        image: product.image,
+        url: product.url || ('product.html?id=' + product.id)
+      }).replace(/"/g, '&quot;');
+      // health benefits badges
+      const badges = (product.healthBenefits || []).slice(0,3).map(b => `<span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">${b}</span>`).join('');
+      const savings = (product.originalPrice && product.price) ? ` <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Save ₹${(product.originalPrice - product.price)}</div>` : '';
+      return `
+        <div class="product-card" data-product-json="${safeJson}">
+          <div class="relative">
+            <div class="img-4-5">
+              <img src="${product.image}" alt="${product.name || 'Product'}" loading="lazy">
+            </div>
+            ${savings}
+          </div>
+          <div class="p-4 card-body">
+            <h3 class="product-name font-bold text-lg mb-2 text-gray-800">${product.name}</h3>
+            <p class="product-desc text-sm text-gray-600 mb-2">${product.subtitle || ''}</p>
+            <p class="text-xs text-gray-500 mb-3 line-clamp-2">${product.description || ''}</p>
+            <div class="flex flex-wrap gap-1 mb-3">${badges}</div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-xl font-bold text-green-600">₹${product.price}</span>
+                ${product.originalPrice ? `<span class="text-sm text-gray-500 line-through">₹${product.originalPrice}</span>` : ''}
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                ${product.rating || '-'}
+              </div>
+            </div>
+            <div class="flex space-x-2">
+              <button onclick="addToCart('${product.id}')" class="flex-1 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors duration-200 text-sm font-medium">Add to Cart</button>
+              <button data-quickview class="bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition-colors duration-200 text-sm" onclick="showProductDetails('${product.id}')">View Details</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    // re-run entrance animation
+    if (typeof anime !== 'undefined') {
+      anime({ targets: '.product-card', opacity: [0,1], translateY: [20,0], duration:600, delay: anime.stagger(100), easing:'easeOutQuart' });
+    }
+    // ensure our normalizer wraps images if needed
+    if (window.productImageUtilities) { productImageUtilities.normalizeProductImages(); productImageUtilities.attachDelegatedHandlers(); }
+  }
+
+  // ---------- Modal / product details (uses #product-modal) ----------
+  const modal = document.getElementById('product-modal');
+  const modalBackdrop = document.getElementById('product-modal-backdrop');
+  const modalClose = document.getElementById('product-modal-close');
+  const modalImageContainer = document.getElementById('product-modal-image');
+  const modalName = document.getElementById('product-modal-name');
+  const modalDesc = document.getElementById('product-modal-desc');
+  const modalPrice = document.getElementById('product-modal-price');
+  const modalAdd = document.getElementById('product-modal-add');
+  const modalVisit = document.getElementById('product-modal-visit');
+
+  function showProductDetails(productId) {
+    const product = products.find(p => String(p.id) === String(productId));
+    // If product not found, attempt to build minimal data (for featured items with string ids)
+    const data = product ? product : { id: productId, name: productId, description: '', price: '', image: '' };
+    openProductModal(data);
+  }
+
+  function openProductModal(productData) {
+    modalName.textContent = productData.name || 'Product';
+    modalDesc.textContent = productData.description || '';
+    modalPrice.textContent = productData.price ? `₹${productData.price}` : '';
+    modalVisit.onclick = () => { if (productData.url) window.location.href = productData.url; else if (productData.id) window.location.href = 'product.html?id=' + productData.id; };
+    modalAdd.onclick = () => { if (typeof addToCart === 'function') addToCart(productData.id || productData.sku || productData.name); else console.warn('addToCart not found'); };
+
+    modalImageContainer.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = productData.image || productData.img || '';
+    img.alt = productData.name || 'Product image';
+    img.loading = 'lazy';
+    modalImageContainer.appendChild(img);
+
+    modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden';
+  }
+
+  function closeProductModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeProductModal);
+  if (modalClose) modalClose.addEventListener('click', closeProductModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
+
+  // ---------- Other pages kept minimal (recipes/blog) ----------
+  function initializeRecipesPage() { renderRecipes(); /* ... */ }
+  function initializeWhyMilletsPage() { /* ... */ }
+  function initializeBlogPage() { renderBlogPosts(); /* ... */ }
+
+  function renderRecipes(){ /* placeholder */ }
+  function renderBlogPosts(){ /* placeholder */ }
+
+  // ---------- Utilities from previous file ----------
+  function showRecipeDetails(recipeId){ alert('Recipe details modal would open here.'); }
+  function showBlogPost(postId){ alert('Blog post modal would open here.'); }
+  function selectSize(size){ /* placeholder */ }
+  function compareNutrition(){ alert('Compare feature'); }
+  function handleContactForm(e){ e.preventDefault(); showNotification('Thank you - we got your message!','success'); e.target.reset(); }
+  function showNotification(message, type='info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 ${ type==='success' ? 'bg-green-500 text-white' : type==='error' ? 'bg-red-500 text-white' : 'bg-blue-500 text-white' }`;
+    notification.textContent = message; document.body.appendChild(notification); setTimeout(()=>notification.remove(),5000);
+  }
+
+  // expose functions
+  window.addToCart = addToCart;
+  window.removeFromCart = removeFromCart;
+  window.updateCartQuantity = updateCartQuantity;
+  window.showProductDetails = showProductDetails;
+  window.showRecipeDetails = showRecipeDetails;
+  window.showBlogPost = showBlogPost;
+  window.addRecipeToCart = function(){};
+  window.updateRecipeIngredients = function(){};
+  window.closeModal = closeProductModal;
+  window.selectSize = selectSize;
+  window.compareNutrition = compareNutrition;
+  window.handleContactForm = handleContactForm;
+
+  // ---------- Non-invasive image normalizer + modal helper (reusable) ----------
+  (function(){
+    const productsGrid = document.getElementById('products-grid');
+    const modal = document.getElementById('product-modal');
+    const modalBackdrop = document.getElementById('product-modal-backdrop');
+    const modalClose = document.getElementById('product-modal-close');
+    const modalImageContainer = document.getElementById('product-modal-image');
+    const modalName = document.getElementById('product-modal-name');
+    const modalDesc = document.getElementById('product-modal-desc');
+    const modalPrice = document.getElementById('product-modal-price');
+    const modalAdd = document.getElementById('product-modal-add');
+    const modalVisit = document.getElementById('product-modal-visit');
+
+    function normalizeProductImages() {
+      // Wrap any img not already inside .img-4-5 or .img-square
+      document.querySelectorAll('#products-grid img, .splide__slide img').forEach(img=>{
+        if (img.closest('.img-4-5') || img.closest('.img-square')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'img-4-5';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+      });
+      // For team images
+      document.querySelectorAll('.team-grid img').forEach(img=>{
+        if (img.closest('.img-square')) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'img-square';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+      });
+    }
+
+    function openProductModal(productData) {
+      modalName.textContent = productData.name || 'Product';
+      modalDesc.textContent = productData.description || '';
+      modalPrice.textContent = productData.price ? `₹${productData.price}` : '';
+      modalVisit.onclick = () => { if (productData.url) window.location.href = productData.url; };
+      modalAdd.onclick = () => { if (typeof addToCart === 'function') addToCart(productData.id || productData.sku || productData.name); };
+
+      modalImageContainer.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = productData.image || '';
+      img.alt = productData.name || 'Product image';
+      img.loading = 'lazy';
+      modalImageContainer.appendChild(img);
+
+      modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal); if (modalClose) modalClose.addEventListener('click', closeModal); document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    function attachDelegatedHandlers() {
+      if (!productsGrid) return;
+      productsGrid.addEventListener('click', (e) => {
+        const target = e.target;
+        const card = target.closest('[data-product-json]') || target.closest('.product-card');
+        if (!card) return;
+        if (target.closest('[data-quickview]') || target.closest('.img-4-5') || target.matches('img')) {
+          let data = null;
+          try {
+            if (card.dataset.productJson) data = JSON.parse(card.dataset.productJson);
+            else if (card.dataset.product) data = JSON.parse(card.dataset.product);
+            else {
+              data = {
+                id: card.dataset.productId || card.dataset.id,
+                name: card.querySelector('.product-name')?.textContent?.trim(),
+                description: card.querySelector('.product-desc')?.textContent?.trim(),
+                price: card.querySelector('.product-price')?.textContent?.trim(),
+                image: card.querySelector('img')?.getAttribute('src'),
+                url: card.querySelector('a.product-link')?.href
+              };
+            }
+          } catch (err) { console.warn('Failed to parse product json', err); data = { name: 'Product', image: card.querySelector('img')?.src || '' }; }
+          openProductModal(data);
+        }
+      });
+    }
+
+    window.productImageUtilities = { normalizeProductImages, attachDelegatedHandlers, openProductModal, closeModal };
+
+    // auto-run shortly after DOM ready
+    document.addEventListener('DOMContentLoaded', ()=> setTimeout(()=>{ normalizeProductImages(); attachDelegatedHandlers(); }, 50));
+  })();
+  </script>
+
+  <!-- Initialize Splide on DOM ready -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      // mount carousel if present
+      if (typeof Splide !== 'undefined' && document.getElementById('product-carousel')) {
+        new Splide('#product-carousel', {
+          type: 'loop', perPage: 4, perMove: 1, gap: '1rem',
+          autoplay: true, interval: 3000,
+          breakpoints: { 1024: { perPage:3 }, 768: { perPage:2 }, 480: { perPage:1 } }
+        }).mount();
+      }
+    });
+  </script>
+</body>
+</html>

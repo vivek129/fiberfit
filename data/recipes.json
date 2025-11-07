@@ -1,0 +1,416 @@
+{
+  "recipes": [
+    {
+      "id": "ragi-porridge",
+      "name": "Traditional Ragi Porridge",
+      "description": "A nutritious and warming breakfast porridge made with ragi flour, perfect for starting your day with sustained energy.",
+      "image": "cooking-ingredients.png",
+      "category": "breakfast",
+      "difficulty": "easy",
+      "prepTime": 5,
+      "cookTime": 10,
+      "servings": 2,
+      "rating": 4.8,
+      "reviews": 234,
+      "ingredients": [
+        {"name": "Ragi flour", "amount": "4 tbsp", "productId": "ragi-flour"},
+        {"name": "Water", "amount": "2 cups"},
+        {"name": "Milk", "amount": "1 cup"},
+        {"name": "Jaggery", "amount": "2 tbsp"},
+        {"name": "Cardamom powder", "amount": "1/4 tsp"},
+        {"name": "Ghee", "amount": "1 tsp"},
+        {"name": "Chopped nuts", "amount": "2 tbsp"}
+      ],
+      "instructions": [
+        "Mix ragi flour with 1/2 cup water to make a smooth paste without lumps",
+        "Heat remaining water in a pan and bring to boil",
+        "Slowly add the ragi paste while stirring continuously",
+        "Cook on medium heat for 5-7 minutes, stirring constantly",
+        "Add milk and jaggery, mix well",
+        "Add cardamom powder and cook for another 2-3 minutes",
+        "Garnish with ghee and chopped nuts before serving"
+      ],
+      "nutritionalInfo": {
+        "calories": "180",
+        "protein": "6g",
+        "carbs": "32g",
+        "fat": "4g",
+        "fiber": "3g"
+      },
+      "tags": ["gluten-free", "diabetic-friendly", "high-calcium", "breakfast"],
+      "tips": [
+        "Stir continuously to prevent lumps",
+        "Adjust sweetness according to taste",
+        "Can be made with water only for dairy-free version"
+      ]
+    },
+    {
+      "id": "jowar-roti",
+      "name": "Jowar Roti",
+      "description": "Traditional flatbread made with jowar flour, perfect for a healthy and gluten-free meal accompaniment.",
+      "image": "jowar_roti.jpg",
+      "category": "main-course",
+      "difficulty": "medium",
+      "prepTime": 10,
+      "cookTime": 20,
+      "servings": 4,
+      "rating": 4.6,
+      "reviews": 189,
+      "ingredients": [
+        {"name": "Jowar flour", "amount": "2 cups", "productId": "jowar-flour"},
+        {"name": "Warm water", "amount": "1 cup"},
+        {"name": "Salt", "amount": "1 tsp"},
+        {"name": "Ghee", "amount": "2 tbsp"}
+      ],
+      "instructions": [
+        "Mix jowar flour and salt in a large bowl",
+        "Gradually add warm water and knead into a soft dough",
+        "Divide dough into 8 equal portions",
+        "Roll each portion into a circle using rolling pin",
+        "Heat a tawa and cook each roti until golden spots appear",
+        "Flip and cook the other side, apply ghee if desired",
+        "Serve hot with curry or vegetables"
+      ],
+      "nutritionalInfo": {
+        "calories": "120",
+        "protein": "4g",
+        "carbs": "25g",
+        "fat": "2g",
+        "fiber": "4g"
+      },
+      "tags": ["gluten-free", "heart-healthy", "traditional", "flatbread"],
+      "tips": [
+        "Use warm water for better binding",
+        "Roll between plastic sheets to prevent sticking",
+        "Serve immediately for best texture"
+      ]
+    },
+    {
+      "id": "bajra-khichdi",
+      "name": "Bajra Khichdi",
+      "description": "Comforting one-pot meal made with pearl millet, lentils, and vegetables. Perfect for cold winter evenings.",
+      "image": "cooking-ingredients.png",
+      "category": "main-course",
+      "difficulty": "easy",
+      "prepTime": 15,
+      "cookTime": 30,
+      "servings": 4,
+      "rating": 4.7,
+      "reviews": 156,
+      "ingredients": [
+        {"name": "Bajra grains", "amount": "1 cup", "productId": "bajra-flour"},
+        {"name": "Moong dal", "amount": "1/2 cup"},
+        {"name": "Mixed vegetables", "amount": "1 cup"},
+        {"name": "Onion", "amount": "1 medium"},
+        {"name": "Ginger-garlic paste", "amount": "1 tbsp"},
+        {"name": "Turmeric powder", "amount": "1/2 tsp"},
+        {"name": "Cumin seeds", "amount": "1 tsp"},
+        {"name": "Ghee", "amount": "2 tbsp"},
+        {"name": "Salt", "amount": "to taste"},
+        {"name": "Water", "amount": "4 cups"}
+      ],
+      "instructions": [
+        "Soak bajra in water for 2 hours, then drain",
+        "Heat ghee in pressure cooker, add cumin seeds",
+        "Add chopped onion and sauté until golden",
+        "Add ginger-garlic paste and cook for 1 minute",
+        "Add vegetables, turmeric, and salt",
+        "Add soaked bajra and moong dal",
+        "Add water and pressure cook for 4-5 whistles",
+        "Serve hot with ghee on top"
+      ],
+      "nutritionalInfo": {
+        "calories": "285",
+        "protein": "12g",
+        "carbs": "48g",
+        "fat": "6g",
+        "fiber": "8g"
+      },
+      "tags": ["comfort-food", "winter-special", "one-pot", "iron-rich"],
+      "tips": [
+        "Soak bajra for easier cooking",
+        "Adjust water consistency as preferred",
+        "Add more ghee for richer taste"
+      ]
+    },
+    {
+      "id": "foxtail-upma",
+      "name": "Foxtail Millet Upma",
+      "description": "Healthy and delicious South Indian breakfast dish made with foxtail millet instead of semolina.",
+      "image": "cooking-ingredients.png",
+      "category": "breakfast",
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 3,
+      "rating": 4.5,
+      "reviews": 203,
+      "ingredients": [
+        {"name": "Foxtail millet", "amount": "1 cup", "productId": "foxtail-millet"},
+        {"name": "Mixed vegetables", "amount": "1 cup"},
+        {"name": "Onion", "amount": "1 medium"},
+        {"name": "Green chilies", "amount": "2"},
+        {"name": "Mustard seeds", "amount": "1 tsp"},
+        {"name": "Urad dal", "amount": "1 tbsp"},
+        {"name": "Curry leaves", "amount": "few"},
+        {"name": "Oil", "amount": "2 tbsp"},
+        {"name": "Salt", "amount": "to taste"},
+        {"name": "Water", "amount": "2.5 cups"}
+      ],
+      "instructions": [
+        "Wash foxtail millet and soak for 30 minutes",
+        "Heat oil in pan, add mustard seeds and urad dal",
+        "Add curry leaves, green chilies, and onion",
+        "Sauté until onion turns translucent",
+        "Add mixed vegetables and cook for 3-4 minutes",
+        "Add drained millet and sauté for 2 minutes",
+        "Add water and salt, bring to boil",
+        "Cover and cook on low heat for 15 minutes",
+        "Fluff with fork and serve hot"
+      ],
+      "nutritionalInfo": {
+        "calories": "195",
+        "protein": "6g",
+        "carbs": "35g",
+        "fat": "5g",
+        "fiber": "4g"
+      },
+      "tags": ["south-indian", "diabetic-friendly", "low-gi", "breakfast"],
+      "tips": [
+        "Soaking helps in faster cooking",
+        "Can add peanuts for extra crunch",
+        "Serve with coconut chutney"
+      ]
+    },
+    {
+      "id": "mixed-millet-laddu",
+      "name": "Mixed Millet Laddu",
+      "description": "Nutritious and delicious sweet balls made with a combination of different millet flours and jaggery.",
+      "image": "cooking-ingredients.png",
+      "category": "dessert",
+      "difficulty": "medium",
+      "prepTime": 15,
+      "cookTime": 25,
+      "servings": 12,
+      "rating": 4.9,
+      "reviews": 167,
+      "ingredients": [
+        {"name": "Ragi flour", "amount": "1/2 cup", "productId": "ragi-flour"},
+        {"name": "Jowar flour", "amount": "1/4 cup", "productId": "jowar-flour"},
+        {"name": "Bajra flour", "amount": "1/4 cup", "productId": "bajra-flour"},
+        {"name": "Jaggery", "amount": "3/4 cup"},
+        {"name": "Ghee", "amount": "1/4 cup"},
+        {"name": "Mixed nuts", "amount": "1/2 cup"},
+        {"name": "Cardamom powder", "amount": "1/2 tsp"},
+        {"name": "Sesame seeds", "amount": "2 tbsp"}
+      ],
+      "instructions": [
+        "Heat a pan and dry roast each flour separately until aromatic",
+        "Roast nuts and sesame seeds separately",
+        "Melt jaggery with little water to make syrup",
+        "Heat ghee in another pan",
+        "Mix all roasted flours, nuts, and cardamom",
+        "Add hot ghee and jaggery syrup to the mixture",
+        "Mix well and shape into laddus while warm",
+        "Let them cool and store in airtight container"
+      ],
+      "nutritionalInfo": {
+        "calories": "145",
+        "protein": "3g",
+        "carbs": "22g",
+        "fat": "6g",
+        "fiber": "2g"
+      },
+      "tags": ["sweet", "energy-boost", "traditional", "festival"],
+      "tips": [
+        "Shape laddus while mixture is warm",
+        "Can use honey instead of jaggery",
+        "Store in cool place for longer shelf life"
+      ]
+    },
+    {
+      "id": "millet-salad",
+      "name": "Millet Power Salad",
+      "description": "Refreshing and nutritious salad made with cooked millets, fresh vegetables, and a light dressing.",
+      "image": "cooking-ingredients.png",
+      "category": "salad",
+      "difficulty": "easy",
+      "prepTime": 15,
+      "cookTime": 20,
+      "servings": 4,
+      "rating": 4.4,
+      "reviews": 98,
+      "ingredients": [
+        {"name": "Cooked foxtail millet", "amount": "2 cups", "productId": "foxtail-millet"},
+        {"name": "Cucumber", "amount": "1 medium"},
+        {"name": "Tomatoes", "amount": "2 medium"},
+        {"name": "Bell peppers", "amount": "1/2 cup"},
+        {"name": "Fresh mint", "amount": "2 tbsp"},
+        {"name": "Lemon juice", "amount": "2 tbsp"},
+        {"name": "Olive oil", "amount": "1 tbsp"},
+        {"name": "Salt", "amount": "to taste"},
+        {"name": "Black pepper", "amount": "1/2 tsp"}
+      ],
+      "instructions": [
+        "Cook foxtail millet and let it cool completely",
+        "Chop all vegetables into small pieces",
+        "In a large bowl, mix cooked millet and vegetables",
+        "Add chopped mint leaves",
+        "Whisk together lemon juice, olive oil, salt, and pepper",
+        "Pour dressing over salad and mix gently",
+        "Refrigerate for 30 minutes before serving",
+        "Serve chilled as a complete meal"
+      ],
+      "nutritionalInfo": {
+        "calories": "165",
+        "protein": "5g",
+        "carbs": "28g",
+        "fat": "4g",
+        "fiber": "3g"
+      },
+      "tags": ["salad", "weight-loss", "refreshing", "complete-meal"],
+      "tips": [
+        "Use any cooked millet variety",
+        "Add protein like chickpeas or tofu",
+        "Best served chilled"
+      ]
+    },
+    {
+      "id": "millet-dosa",
+      "name": "Mixed Millet Dosa",
+      "description": "Crispy and healthy dosa made with a blend of different millet flours and urad dal.",
+      "image": "cooking-ingredients.png",
+      "category": "breakfast",
+      "difficulty": "medium",
+      "prepTime": 30,
+      "cookTime": 15,
+      "servings": 6,
+      "rating": 4.7,
+      "reviews": 145,
+      "ingredients": [
+        {"name": "Foxtail millet", "amount": "1/2 cup", "productId": "foxtail-millet"},
+        {"name": "Little millet", "amount": "1/4 cup", "productId": "little-millet"},
+        {"name": "Barnyard millet", "amount": "1/4 cup", "productId": "barnyard-millet"},
+        {"name": "Urad dal", "amount": "1/2 cup"},
+        {"name": "Fenugreek seeds", "amount": "1 tsp"},
+        {"name": "Salt", "amount": "to taste"},
+        {"name": "Oil", "amount": "as needed"}
+      ],
+      "instructions": [
+        "Wash and soak all millets and urad dal separately for 4 hours",
+        "Soak fenugreek seeds with urad dal",
+        "Grind urad dal to smooth paste",
+        "Grind millets to fine paste separately",
+        "Mix both batters, add salt, and ferment overnight",
+        "Heat dosa pan and pour ladle of batter",
+        "Spread thin and cook until crispy",
+        "Serve hot with chutney and sambar"
+      ],
+      "nutritionalInfo": {
+        "calories": "85",
+        "protein": "3g",
+        "carbs": "15g",
+        "fat": "1g",
+        "fiber": "2g"
+      },
+      "tags": ["fermented", "south-indian", "gluten-free", "probiotic"],
+      "tips": [
+        "Fermentation time depends on weather",
+        "Can add rice for softer texture",
+        "Make thin for crispy dosas"
+      ]
+    },
+    {
+      "id": "millet-pancakes",
+      "name": "Millet Banana Pancakes",
+      "description": "Healthy and delicious pancakes made with millet flour and ripe bananas, perfect for breakfast or snack.",
+      "image": "cooking-ingredients.png",
+      "category": "breakfast",
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 4,
+      "rating": 4.6,
+      "reviews": 178,
+      "ingredients": [
+        {"name": "Ragi flour", "amount": "1 cup", "productId": "ragi-flour"},
+        {"name": "Ripe bananas", "amount": "2 medium"},
+        {"name": "Milk", "amount": "3/4 cup"},
+        {"name": "Egg", "amount": "1"},
+        {"name": "Baking powder", "amount": "1 tsp"},
+        {"name": "Cinnamon powder", "amount": "1/2 tsp"},
+        {"name": "Salt", "amount": "a pinch"},
+        {"name": "Butter", "amount": "as needed"},
+        {"name": "Honey", "amount": "for serving"}
+      ],
+      "instructions": [
+        "Mash bananas in a large bowl",
+        "Add egg and milk, whisk well",
+        "In another bowl, mix ragi flour, baking powder, cinnamon, and salt",
+        "Combine wet and dry ingredients gently",
+        "Heat pan and add butter",
+        "Pour small portions of batter",
+        "Cook until bubbles form, then flip",
+        "Serve warm with honey drizzle"
+      ],
+      "nutritionalInfo": {
+        "calories": "155",
+        "protein": "5g",
+        "carbs": "28g",
+        "fat": "3g",
+        "fiber": "4g"
+      },
+      "tags": ["pancakes", "banana", "kid-friendly", "natural-sweetener"],
+      "tips": [
+        "Don't overmix the batter",
+        "Use ripe bananas for sweetness",
+        "Can make eggless with flax eggs"
+      ]
+    },
+    {
+      "id": "millet-smoothie-bowl",
+      "name": "Millet Smoothie Bowl",
+      "description": "Nutritious and Instagram-worthy smoothie bowl topped with cooked millets, fresh fruits, and nuts.",
+      "image": "cooking-ingredients.png",
+      "category": "breakfast",
+      "difficulty": "easy",
+      "prepTime": 10,
+      "cookTime": 15,
+      "servings": 2,
+      "rating": 4.8,
+      "reviews": 89,
+      "ingredients": [
+        {"name": "Cooked barnyard millet", "amount": "1/2 cup", "productId": "barnyard-millet"},
+        {"name": "Frozen banana", "amount": "1 large"},
+        {"name": "Mango chunks", "amount": "1/2 cup"},
+        {"name": "Coconut milk", "amount": "1/2 cup"},
+        {"name": "Chia seeds", "amount": "1 tbsp"},
+        {"name": "Fresh berries", "amount": "1/2 cup"},
+        {"name": "Granola", "amount": "2 tbsp"},
+        {"name": "Coconut flakes", "amount": "1 tbsp"}
+      ],
+      "instructions": [
+        "Cook barnyard millet and let it cool",
+        "Blend frozen banana, mango, and coconut milk until smooth",
+        "Pour smoothie into bowls",
+        "Top with cooked millet, fresh berries, and granola",
+        "Sprinkle chia seeds and coconut flakes",
+        "Arrange toppings artfully",
+        "Serve immediately while cold"
+      ],
+      "nutritionalInfo": {
+        "calories": "220",
+        "protein": "6g",
+        "carbs": "38g",
+        "fat": "7g",
+        "fiber": "6g"
+      },
+      "tags": ["smoothie-bowl", "instagram-worthy", "superfood", "refreshing"],
+      "tips": [
+        "Use frozen fruits for thick consistency",
+        "Arrange toppings just before serving",
+        "Can use any millet variety"
+      ]
+    }
+  ]
+}

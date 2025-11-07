@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Millets? - Fiber Fit Aata | Health Benefits & Nutritional Science</title>
+    <meta name="description" content="Discover the science-backed health benefits of millets. Learn why these ancient grains are superior to modern alternatives for nutrition, health, and sustainability.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-cream': '#F7F3E9',
+                        'rich-brown': '#8B4513',
+                        'golden-wheat': '#D4A574',
+                        'deep-earth': '#5D4037',
+                        'soft-sage': '#A8B5A0',
+                        'warm-sand': '#E6D7C3',
+                        'muted-copper': '#B87333',
+                        'cream-white': '#FEFCF8'
+                    },
+                    fontFamily: {
+                        'handwritten': ['Caveat', 'Kalam', 'cursive'],
+                        'body': ['Inter', 'Source Sans Pro', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    
+    <style>
+        .grain-texture {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+        }
+        
+        .animate-in {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+        }
+        
+        .cart-count {
+            background: #D4A574;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+        
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(254, 252, 248, 0.9) 0%, rgba(247, 243, 233, 0.9) 100%);
+        }
+        
+        .chart-container {
+            height: 400px;
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+        }
+        
+        .comparison-table table {
+            min-width: 600px;
+        }
+    </style>
+</head>
+<body class="bg-warm-cream text-rich-brown font-body">
+    <!-- Navigation -->
+    <nav class="bg-cream-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                     <a href="index.html" class="text-2xl font-handwritten font-bold text-rich-brown">
+                        <!-- 🌾 Fiber Fit Aata-->
+                     <img src="assets/images/logo.png" class="img img-responsive" style="max-height: 60px;"/>
+                        </a>  </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Home</a>
+                    <a href="story.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Our Story</a>
+                    <a href="why-millets.html" class="text-rich-brown hover:text-golden-wheat transition-colors font-medium">Why Millets</a>
+                    <a href="products.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Products</a>
+                    <a href="recipes.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Recipes</a>
+                    <a href="blog.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Blog</a>
+                    <a href="contact.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Contact</a>
+                    
+                    <!-- Cart Icon -->
+                    <div class="relative">
+                        <button id="cart-toggle" class="flex items-center space-x-1 text-rich-brown hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h7a2 2 0 002-2v-4"></path>
+                            </svg>
+                            <span class="cart-count hidden">0</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-rich-brown">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Home</a>
+                <a href="story.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Our Story</a>
+                <a href="why-millets.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded font-medium">Why Millets</a>
+                <a href="products.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Products</a>
+                <a href="recipes.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Recipes</a>
+                <a href="blog.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Blog</a>
+                <a href="contact.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-cream-white grain-texture">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-handwritten font-bold text-rich-brown mb-6">Why Millets?</h1>
+                <p class="text-xl text-deep-earth max-w-4xl mx-auto leading-relaxed">
+                    Discover the science-backed benefits of ancient grains that have sustained civilizations for millennia. 
+                    Modern research confirms what traditional wisdom has always known – millets are nutritional powerhouses.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Benefits -->
+    <section class="py-16 bg-warm-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Key Health Benefits</h2>
+                <p class="text-lg text-deep-earth max-w-3xl mx-auto">
+                    Millets offer a unique combination of nutritional advantages that make them superior to many modern grains
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">Naturally Gluten-Free</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        Perfect for individuals with celiac disease, gluten sensitivity, or those choosing gluten-free lifestyles
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• Safe for celiac patients</li>
+                        <li>• Easy digestion</li>
+                        <li>• No inflammatory response</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">High Fiber Content</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        Up to 14% fiber content promotes digestive health and provides lasting satiety
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• Improved gut health</li>
+                        <li>• Better blood sugar control</li>
+                        <li>• Natural appetite regulation</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">Heart Healthy</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        Rich in magnesium, potassium, and antioxidants that support cardiovascular wellness
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• Lower cholesterol levels</li>
+                        <li>• Reduced blood pressure</li>
+                        <li>• Anti-inflammatory properties</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">Low Glycemic Index</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        Ideal for diabetes management with slow, steady glucose release and improved insulin sensitivity
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• Better blood sugar control</li>
+                        <li>• Reduced diabetes risk</li>
+                        <li>• Sustained energy levels</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">Nutrient Dense</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        Packed with essential minerals, vitamins, and amino acids often lacking in modern diets
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• High calcium content</li>
+                        <li>• Rich iron source</li>
+                        <li>• Essential amino acids</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card rounded-lg p-6 hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-3 text-center">Weight Management</h3>
+                    <p class="text-deep-earth text-center mb-4">
+                        High protein and fiber content promotes satiety and supports healthy weight maintenance
+                    </p>
+                    <ul class="text-sm text-deep-earth space-y-1">
+                        <li>• Natural appetite control</li>
+                        <li>• Metabolism support</li>
+                        <li>• Lean muscle maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutritional Comparison Chart -->
+    <section class="py-16 bg-cream-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Nutritional Comparison</h2>
+                <p class="text-lg text-deep-earth max-w-3xl mx-auto">
+                    See how millets stack up against common grains in terms of key nutrients
+                </p>
+            </div>
+            
+            <div class="bg-warm-cream rounded-lg p-6 mb-8 scroll-animate">
+                <div class="chart-container" id="nutrition-chart"></div>
+            </div>
+            
+            <!-- Interactive Comparison Tool -->
+            <div class="bg-cream-white rounded-lg p-6 shadow-lg scroll-animate">
+                <h3 class="text-xl font-bold text-rich-brown mb-4">Compare Millets</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-rich-brown mb-2">Select First Millet:</label>
+                        <select id="millet1" class="w-full px-3 py-2 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                            <option value="ragi">Ragi (Finger Millet)</option>
+                            <option value="jowar">Jowar (Sorghum)</option>
+                            <option value="bajra">Bajra (Pearl Millet)</option>
+                            <option value="foxtail">Foxtail Millet</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-rich-brown mb-2">Select Second Millet:</label>
+                        <select id="millet2" class="w-full px-3 py-2 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                            <option value="ragi">Ragi (Finger Millet)</option>
+                            <option value="jowar" selected>Jowar (Sorghum)</option>
+                            <option value="bajra">Bajra (Pearl Millet)</option>
+                            <option value="foxtail">Foxtail Millet</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="compareMillets()" class="w-full bg-golden-wheat text-cream-white py-2 px-4 rounded-lg hover:bg-muted-copper transition-colors duration-300">
+                            Compare
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="comparison-result" class="hidden">
+                    <h4 class="font-semibold text-rich-brown mb-3">Comparison Results:</h4>
+                    <div id="comparison-chart" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Comparison Table -->
+    <section class="py-16 bg-warm-cream grain-texture">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Complete Nutritional Profile</h2>
+                <p class="text-lg text-deep-earth">
+                    Per 100g comparison of different millet varieties (values may vary by source)
+                </p>
+            </div>
+            
+            <div class="comparison-table scroll-animate">
+                <div class="bg-cream-white rounded-lg shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-golden-wheat text-cream-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-semibold">Nutrient</th>
+                                <th class="px-6 py-4 text-center font-semibold">Ragi</th>
+                                <th class="px-6 py-4 text-center font-semibold">Jowar</th>
+                                <th class="px-6 py-4 text-center font-semibold">Bajra</th>
+                                <th class="px-6 py-4 text-center font-semibold">Foxtail</th>
+                                <th class="px-6 py-4 text-center font-semibold">Rice</th>
+                                <th class="px-6 py-4 text-center font-semibold">Wheat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-warm-sand">
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-rich-brown">Protein (g)</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">7.3</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">10.4</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">11.6</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">12.3</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">6.8</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">12.6</td>
+                            </tr>
+                            <tr class="bg-warm-cream">
+                                <td class="px-6 py-4 font-medium text-rich-brown">Fiber (g)</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">3.6</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">9.7</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">1.3</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">8.0</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">0.4</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">2.0</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-rich-brown">Calcium (mg)</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">344</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">25</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">42</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">31</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">10</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">34</td>
+                            </tr>
+                            <tr class="bg-warm-cream">
+                                <td class="px-6 py-4 font-medium text-rich-brown">Iron (mg)</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">3.9</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">4.1</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">8.0</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">2.8</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">0.7</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">3.6</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-medium text-rich-brown">Magnesium (mg)</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">137</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">165</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">137</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">81</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">25</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">102</td>
+                            </tr>
+                            <tr class="bg-warm-cream">
+                                <td class="px-6 py-4 font-medium text-rich-brown">Glycemic Index</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">Low</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">Low</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">Medium</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">Low</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">High</td>
+                                <td class="px-6 py-4 text-center text-deep-earth">High</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Research -->
+    <section class="py-16 bg-cream-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Scientific Research</h2>
+                <p class="text-lg text-deep-earth max-w-3xl mx-auto">
+                    Modern studies validate the traditional wisdom about millet health benefits
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-warm-cream rounded-lg p-6 scroll-animate">
+                    <h3 class="text-xl font-bold text-rich-brown mb-4">Diabetes Management</h3>
+                    <p class="text-deep-earth mb-4">
+                        A 2021 study published in the Journal of Food Science and Technology found that regular consumption 
+                        of millets reduced HbA1c levels by an average of 12% in type 2 diabetes patients.
+                    </p>
+                    <div class="text-sm text-deep-earth">
+                        <strong>Key Finding:</strong> Millets have a low glycemic index (GI) ranging from 35-55, 
+                        compared to white rice (GI 73) and wheat (GI 65).
+                    </div>
+                </div>
+                
+                <div class="bg-warm-cream rounded-lg p-6 scroll-animate">
+                    <h3 class="text-xl font-bold text-rich-brown mb-4">Cardiovascular Health</h3>
+                    <p class="text-deep-earth mb-4">
+                        Research from the International Journal of Molecular Sciences (2022) demonstrates that 
+                        millet consumption is associated with reduced LDL cholesterol and improved lipid profiles.
+                    </p>
+                    <div class="text-sm text-deep-earth">
+                        <strong>Key Finding:</strong> The high magnesium content in millets supports heart health 
+                        and helps regulate blood pressure naturally.
+                    </div>
+                </div>
+                
+                <div class="bg-warm-cream rounded-lg p-6 scroll-animate">
+                    <h3 class="text-xl font-bold text-rich-brown mb-4">Weight Management</h3>
+                    <p class="text-deep-earth mb-4">
+                        A comprehensive review in Nutrients (2023) showed that millet-based diets led to 
+                        significant weight loss and improved metabolic markers in overweight individuals.
+                    </p>
+                    <div class="text-sm text-deep-earth">
+                        <strong>Key Finding:</strong> High fiber and protein content promotes satiety and 
+                        reduces overall calorie intake without compromising nutrition.
+                    </div>
+                </div>
+                
+                <div class="bg-warm-cream rounded-lg p-6 scroll-animate">
+                    <h3 class="text-xl font-bold text-rich-brown mb-4">Bone Health</h3>
+                    <p class="text-deep-earth mb-4">
+                        Studies on ragi (finger millet) published in the Journal of Nutritional Science (2021) 
+                        highlight its exceptional calcium content and bioavailability for bone health.
+                    </p>
+                    <div class="text-sm text-deep-earth">
+                        <strong>Key Finding:</strong> Ragi contains 10x more calcium than rice and wheat, 
+                        making it ideal for preventing osteoporosis and supporting bone development.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-warm-cream grain-texture">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-6">Experience the Benefits</h2>
+                <p class="text-lg text-deep-earth mb-8 max-w-2xl mx-auto">
+                    Ready to transform your health with the power of ancient grains? 
+                    Start your millet journey today with our premium organic collection.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="products.html" class="bg-golden-wheat text-cream-white px-8 py-3 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">
+                        Shop Millets Now
+                    </a>
+                    <a href="recipes.html" class="border-2 border-golden-wheat text-golden-wheat px-8 py-3 rounded-lg font-semibold hover:bg-golden-wheat hover:text-cream-white transition-colors duration-300">
+                        Try Healthy Recipes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-rich-brown text-cream-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-handwritten font-bold mb-4">🌾 Fiber Fit Aata</h3>
+                    <p class="text-warm-sand mb-4">
+                        Bringing ancient wisdom to modern tables through sustainable, organic millets that nourish both body and planet.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Products</a></li>
+                        <li><a href="recipes.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Recipes</a></li>
+                        <li><a href="blog.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+               
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-warm-sand">
+                        <p>📧 hello@fiberfitaata.com</p>
+                        <p>📞 +91 98765 43210</p>
+                        <p>📍 Hyderabad, Telangana</p>
+                        <p>🕒 Mon-Sat: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-deep-earth mt-8 pt-8 text-center">
+                <p class="text-warm-sand">
+                    © 2024 Fiber Fit Aata. All rights reserved. Made with ❤️ for sustainable living.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-cream-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 border-b border-warm-sand">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-rich-brown">Shopping Cart</h3>
+                <button id="cart-close" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-2">
+                <span class="text-sm text-gray-600">Total: </span>
+                <span class="cart-total font-semibold text-golden-wheat">₹0.00</span>
+            </div>
+        </div>
+        
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="cart-items">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="p-6 border-t border-warm-sand">
+            <button class="w-full bg-golden-wheat text-cream-white py-3 px-4 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Initialize nutrition chart
+        function initializeNutritionChart() {
+            const chartContainer = document.getElementById('nutrition-chart');
+            if (chartContainer && typeof echarts !== 'undefined') {
+                const chart = echarts.init(chartContainer);
+                
+                const option = {
+                    title: {
+                        text: 'Nutritional Comparison: Millets vs Common Grains',
+                        textStyle: { color: '#8B4513', fontSize: 18 }
+                    },
+                    tooltip: { trigger: 'axis' },
+                    legend: {
+                        data: ['Ragi', 'Jowar', 'Bajra', 'Foxtail', 'Rice', 'Wheat'],
+                        textStyle: { color: '#8B4513' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['Protein', 'Fiber', 'Calcium', 'Iron'],
+                        axisLabel: { color: '#8B4513' }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: { color: '#8B4513' }
+                    },
+                    series: [
+                        {
+                            name: 'Ragi',
+                            type: 'bar',
+                            data: [7.3, 3.6, 344, 3.9],
+                            itemStyle: { color: '#D4A574' }
+                        },
+                        {
+                            name: 'Jowar',
+                            type: 'bar',
+                            data: [10.4, 9.7, 25, 4.1],
+                            itemStyle: { color: '#8B4513' }
+                        },
+                        {
+                            name: 'Bajra',
+                            type: 'bar',
+                            data: [11.6, 1.3, 42, 8.0],
+                            itemStyle: { color: '#5D4037' }
+                        },
+                        {
+                            name: 'Foxtail',
+                            type: 'bar',
+                            data: [12.3, 8.0, 31, 2.8],
+                            itemStyle: { color: '#A8B5A0' }
+                        },
+                        {
+                            name: 'Rice',
+                            type: 'bar',
+                            data: [6.8, 0.4, 10, 0.7],
+                            itemStyle: { color: '#B87333' }
+                        },
+                        {
+                            name: 'Wheat',
+                            type: 'bar',
+                            data: [12.6, 2.0, 34, 3.6],
+                            itemStyle: { color: '#E6D7C3' }
+                        }
+                    ]
+                };
+                
+                chart.setOption(option);
+                
+                // Make chart responsive
+                window.addEventListener('resize', () => {
+                    chart.resize();
+                });
+            }
+        }
+        
+        // Compare millets function
+        function compareMillets() {
+            const millet1 = document.getElementById('millet1').value;
+            const millet2 = document.getElementById('millet2').value;
+            
+            // Nutritional data for millets
+            const milletData = {
+                ragi: { name: 'Ragi', protein: 7.3, fiber: 3.6, calcium: 344, iron: 3.9 },
+                jowar: { name: 'Jowar', protein: 10.4, fiber: 9.7, calcium: 25, iron: 4.1 },
+                bajra: { name: 'Bajra', protein: 11.6, fiber: 1.3, calcium: 42, iron: 8.0 },
+                foxtail: { name: 'Foxtail', protein: 12.3, fiber: 8.0, calcium: 31, iron: 2.8 }
+            };
+            
+            const data1 = milletData[millet1];
+            const data2 = milletData[millet2];
+            
+            // Show comparison result
+            const resultDiv = document.getElementById('comparison-result');
+            resultDiv.classList.remove('hidden');
+            
+            // Create comparison chart
+            const chartContainer = document.getElementById('comparison-chart');
+            if (chartContainer && typeof echarts !== 'undefined') {
+                const chart = echarts.init(chartContainer);
+                
+                const option = {
+                    title: {
+                        text: `${data1.name} vs ${data2.name} Comparison`,
+                        textStyle: { color: '#8B4513' }
+                    },
+                    tooltip: { trigger: 'axis' },
+                    legend: {
+                        data: [data1.name, data2.name],
+                        textStyle: { color: '#8B4513' }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['Protein (g)', 'Fiber (g)', 'Calcium (mg)', 'Iron (mg)'],
+                        axisLabel: { color: '#8B4513' }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: { color: '#8B4513' }
+                    },
+                    series: [
+                        {
+                            name: data1.name,
+                            type: 'bar',
+                            data: [data1.protein, data1.fiber, data1.calcium, data1.iron],
+                            itemStyle: { color: '#D4A574' }
+                        },
+                        {
+                            name: data2.name,
+                            type: 'bar',
+                            data: [data2.protein, data2.fiber, data2.calcium, data2.iron],
+                            itemStyle: { color: '#8B4513' }
+                        }
+                    ]
+                };
+                
+                chart.setOption(option);
+            }
+        }
+        
+        // Initialize chart when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initializeNutritionChart, 1000);
+        });
+        
+        // Make compareMillets globally available
+        window.compareMillets = compareMillets;
+    </script>
+</body>
+</html>

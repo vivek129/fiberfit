@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Fiber Fit Aata | Get in Touch & Customer Support</title>
+    <meta name="description" content="Contact Fiber Fit Aata for product inquiries, customer support, or partnership opportunities. We're here to help you on your millet journey.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-cream': '#F7F3E9',
+                        'rich-brown': '#8B4513',
+                        'golden-wheat': '#D4A574',
+                        'deep-earth': '#5D4037',
+                        'soft-sage': '#A8B5A0',
+                        'warm-sand': '#E6D7C3',
+                        'muted-copper': '#B87333',
+                        'cream-white': '#FEFCF8'
+                    },
+                    fontFamily: {
+                        'handwritten': ['Caveat', 'Kalam', 'cursive'],
+                        'body': ['Inter', 'Source Sans Pro', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Core Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/splitting@1.0.6/dist/splitting.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/splitting@1.0.6/dist/splitting.css">
+    
+    <style>
+        .grain-texture {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+        }
+        
+        .animate-in {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+        }
+        
+        .cart-count {
+            background: #D4A574;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, rgba(254, 252, 248, 0.9) 0%, rgba(247, 243, 233, 0.9) 100%);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #E6D7C3;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.open {
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body class="bg-warm-cream text-rich-brown font-body">
+    <!-- Navigation -->
+    <nav class="bg-cream-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                        <a href="index.html" class="text-2xl font-handwritten font-bold text-rich-brown">
+                        <!-- 🌾 Fiber Fit Aata-->
+                     <img src="assets/images/logo.png" class="img img-responsive" style="max-height: 60px;"/>
+                        </a>  </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Home</a>
+                    <a href="story.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Our Story</a>
+                    <a href="why-millets.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Why Millets</a>
+                    <a href="products.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Products</a>
+                    <a href="recipes.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Recipes</a>
+                    <a href="blog.html" class="text-rich-brown hover:text-golden-wheat transition-colors">Blog</a>
+                    <a href="contact.html" class="text-rich-brown hover:text-golden-wheat transition-colors font-medium">Contact</a>
+                    
+                    <!-- Cart Icon -->
+                    <div class="relative">
+                        <button id="cart-toggle" class="flex items-center space-x-1 text-rich-brown hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h7a2 2 0 002-2v-4"></path>
+                            </svg>
+                            <span class="cart-count hidden">0</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-rich-brown">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Home</a>
+                <a href="story.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Our Story</a>
+                <a href="why-millets.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Why Millets</a>
+                <a href="products.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Products</a>
+                <a href="recipes.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Recipes</a>
+                <a href="blog.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded">Blog</a>
+                <a href="contact.html" class="block px-3 py-2 text-rich-brown hover:bg-warm-sand rounded font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-cream-white grain-texture">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-handwritten font-bold text-rich-brown mb-6">Get in Touch</h1>
+                <p class="text-xl text-deep-earth max-w-4xl mx-auto leading-relaxed">
+                    Have questions about our products, need cooking advice, or want to share your millet journey? 
+                    We're here to help you every step of the way.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-16 bg-warm-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card rounded-lg p-6 text-center hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-2">Email Us</h3>
+                    <p class="text-deep-earth mb-2">For product inquiries and support</p>
+                    <a href="mailto:hello@fiberfitaata.com" class="text-golden-wheat font-semibold hover:text-muted-copper transition-colors">
+                        hello@fiberfitaata.com
+                    </a>
+                </div>
+                
+                <div class="contact-card rounded-lg p-6 text-center hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-2">Call Us</h3>
+                    <p class="text-deep-earth mb-2">Monday to Saturday, 9AM-6PM</p>
+                    <a href="tel:+919876543210" class="text-golden-wheat font-semibold hover:text-muted-copper transition-colors">
+                        +91 98765 43210
+                    </a>
+                </div>
+                
+                <div class="contact-card rounded-lg p-6 text-center hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-2">Visit Us</h3>
+                    <p class="text-deep-earth mb-2">Our office and processing unit</p>
+                    <p class="text-golden-wheat font-semibold">
+                        Hyderabad, Telangana
+                    </p>
+                </div>
+                
+                <div class="contact-card rounded-lg p-6 text-center hover-lift scroll-animate">
+                    <div class="w-16 h-16 bg-golden-wheat rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-cream-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-rich-brown mb-2">Live Chat</h3>
+                    <p class="text-deep-earth mb-2">Instant support during business hours</p>
+                    <button onclick="startLiveChat()" class="text-golden-wheat font-semibold hover:text-muted-copper transition-colors">
+                        Start Chat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-16 bg-cream-white grain-texture">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Send Us a Message</h2>
+                <p class="text-lg text-deep-earth max-w-2xl mx-auto">
+                    We'd love to hear from you. Whether you have a question about our products, 
+                    need cooking advice, or just want to share your millet story, we're all ears.
+                </p>
+            </div>
+            
+            <div class="bg-warm-cream rounded-2xl p-8 shadow-lg scroll-animate">
+                <form onsubmit="handleContactForm(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-rich-brown mb-2">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required 
+                                   class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-rich-brown mb-2">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required 
+                                   class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-rich-brown mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-rich-brown mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-rich-brown mb-2">Subject *</label>
+                        <select id="subject" name="subject" required 
+                                class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat">
+                            <option value="">Select a topic</option>
+                            <option value="product-inquiry">Product Inquiry</option>
+                            <option value="order-support">Order Support</option>
+                            <option value="cooking-advice">Cooking Advice</option>
+                            <option value="bulk-orders">Bulk Orders</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="feedback">Feedback & Suggestions</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-rich-brown mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="5" required 
+                                  placeholder="Tell us how we can help you..."
+                                  class="w-full px-4 py-3 border border-warm-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-golden-wheat resize-none"></textarea>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="text-golden-wheat focus:ring-golden-wheat rounded">
+                        <label for="newsletter" class="ml-2 text-sm text-deep-earth">
+                            Subscribe to our newsletter for recipes and health tips
+                        </label>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-golden-wheat text-cream-white px-8 py-3 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-warm-cream">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-4">Frequently Asked Questions</h2>
+                <p class="text-lg text-deep-earth">
+                    Find quick answers to common questions about our products and services
+                </p>
+            </div>
+            
+            <div class="bg-cream-white rounded-lg shadow-lg overflow-hidden scroll-animate">
+                <div class="faq-item">
+                    <button onclick="toggleFAQ('faq1')" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-warm-cream transition-colors">
+                        <span class="font-semibold text-rich-brown">Are your millets certified organic?</span>
+                        <svg class="w-5 h-5 text-golden-wheat transform transition-transform" id="faq1-icon">
+                            <path fill="currentColor" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq1-answer">
+                        <div class="px-6 pb-4 text-deep-earth">
+                            Yes, all our millets are certified organic by third-party agencies. We work directly with organic farmers who follow sustainable farming practices without using synthetic pesticides, fertilizers, or GMOs.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button onclick="toggleFAQ('faq2')" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-warm-cream transition-colors">
+                        <span class="font-semibold text-rich-brown">How should I store millet products?</span>
+                        <svg class="w-5 h-5 text-golden-wheat transform transition-transform" id="faq2-icon">
+                            <path fill="currentColor" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq2-answer">
+                        <div class="px-6 pb-4 text-deep-earth">
+                            Store millets in airtight containers in a cool, dry place away from direct sunlight. Properly stored, whole millets last 12+ months, while flours last 6-8 months. For longer storage, refrigerate or freeze the products.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button onclick="toggleFAQ('faq3')" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-warm-cream transition-colors">
+                        <span class="font-semibold text-rich-brown">Do you offer bulk ordering for businesses?</span>
+                        <svg class="w-5 h-5 text-golden-wheat transform transition-transform" id="faq3-icon">
+                            <path fill="currentColor" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq3-answer">
+                        <div class="px-6 pb-4 text-deep-earth">
+                            Absolutely! We offer competitive pricing for restaurants, cafes, health food stores, and other businesses. Contact us at bulk@fiberfitaata.com or call +91 98765 43210 for wholesale pricing and terms.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button onclick="toggleFAQ('faq4')" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-warm-cream transition-colors">
+                        <span class="font-semibold text-rich-brown">What's your return and refund policy?</span>
+                        <svg class="w-5 h-5 text-golden-wheat transform transition-transform" id="faq4-icon">
+                            <path fill="currentColor" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq4-answer">
+                        <div class="px-6 pb-4 text-deep-earth">
+                            We stand behind our products with a 100% satisfaction guarantee. If you're not happy with your purchase, contact us within 7 days of delivery. We'll arrange a replacement or full refund, no questions asked.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button onclick="toggleFAQ('faq5')" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-warm-cream transition-colors">
+                        <span class="font-semibold text-rich-brown">How long does delivery take?</span>
+                        <svg class="w-5 h-5 text-golden-wheat transform transition-transform" id="faq5-icon">
+                            <path fill="currentColor" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="faq5-answer">
+                        <div class="px-6 pb-4 text-deep-earth">
+                            We deliver across India within 2-5 business days depending on your location. Metro cities typically receive orders in 2-3 days, while remote areas may take 4-5 days. You'll receive tracking information once your order ships.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Hours -->
+    <section class="py-16 bg-cream-white grain-texture">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-6">Business Hours</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-warm-cream rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-rich-brown mb-4">Customer Support</h3>
+                        <div class="space-y-2 text-deep-earth">
+                            <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                            <p>Sunday: Closed</p>
+                            <p class="text-sm mt-4">Response time: Within 24 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-warm-cream rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-rich-brown mb-4">Order Processing</h3>
+                        <div class="space-y-2 text-deep-earth">
+                            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            <p>Orders placed after 5 PM processed next day</p>
+                            <p class="text-sm mt-4">No processing on weekends</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-warm-cream grain-texture">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="scroll-animate">
+                <h2 class="text-3xl font-handwritten font-bold text-rich-brown mb-6">Ready to Start Your Millet Journey?</h2>
+                <p class="text-lg text-deep-earth mb-8 max-w-2xl mx-auto">
+                    Explore our premium organic millet collection and discover the perfect grains for your healthy lifestyle. 
+                    From traditional varieties to innovative blends, we have something for everyone.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="products.html" class="bg-golden-wheat text-cream-white px-8 py-3 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">
+                        Shop Now
+                    </a>
+                    <a href="recipes.html" class="border-2 border-golden-wheat text-golden-wheat px-8 py-3 rounded-lg font-semibold hover:bg-golden-wheat hover:text-cream-white transition-colors duration-300">
+                        Browse Recipes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-rich-brown text-cream-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-handwritten font-bold mb-4">🌾 Fiber Fit Aata</h3>
+                    <p class="text-warm-sand mb-4">
+                        Bringing ancient wisdom to modern tables through sustainable, organic millets that nourish both body and planet.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-warm-sand hover:text-golden-wheat transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Products</a></li>
+                        <li><a href="recipes.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Recipes</a></li>
+                        <li><a href="blog.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-warm-sand hover:text-golden-wheat transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+              
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-warm-sand">
+                        <p>📧 hello@fiberfitaata.com</p>
+                        <p>📞 +91 98765 43210</p>
+                        <p>📍 Hyderabad, Telangana</p>
+                        <p>🕒 Mon-Sat: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-deep-earth mt-8 pt-8 text-center">
+                <p class="text-warm-sand">
+                    © 2024 Fiber Fit Aata. All rights reserved. Made with ❤️ for sustainable living.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-96 bg-cream-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-6 border-b border-warm-sand">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-rich-brown">Shopping Cart</h3>
+                <button id="cart-close" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-2">
+                <span class="text-sm text-gray-600">Total: </span>
+                <span class="cart-total font-semibold text-golden-wheat">₹0.00</span>
+            </div>
+        </div>
+        
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="cart-items">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="p-6 border-t border-warm-sand">
+            <button class="w-full bg-golden-wheat text-cream-white py-3 px-4 rounded-lg font-semibold hover:bg-muted-copper transition-colors duration-300">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(faqId) {
+            const answer = document.getElementById(faqId + '-answer');
+            const icon = document.getElementById(faqId + '-icon');
+            
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(el => {
+                    el.classList.remove('open');
+                });
+                document.querySelectorAll('[id$="-icon"]').forEach(el => {
+                    el.style.transform = 'rotate(0deg)';
+                });
+                
+                // Open clicked FAQ
+                answer.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        // Live Chat Function
+        function startLiveChat() {
+            alert('Live chat would open here. This is a demo implementation.');
+        }
+        
+        // Make functions globally available
+        window.toggleFAQ = toggleFAQ;
+        window.startLiveChat = startLiveChat;
+    </script>
+</body>
+</html>
