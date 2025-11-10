@@ -1,3 +1,4 @@
+// data/fallback-data.js
 // Local fallback dataset for Fiber Fit Aata
 // This file is used only when the site is opened via file:// and fetch() to JSON files
 // would be blocked by the browser's CORS/security model.
@@ -44,7 +45,7 @@ window.__fiberFit_fallback = {
       "healthBenefits": ["Heart Healthy", "Gluten-Free", "High Fiber", "Antioxidant Rich"],
       "nutritionalInfo": {
         "protein": "10.4g",
- "calcium": "25mg",
+        "calcium": "25mg",
         "iron": "4.1mg",
         "fiber": "9.7g",
         "calories": "349"
