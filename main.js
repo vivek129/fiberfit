@@ -53,8 +53,6 @@ async function initializeApp() {
 // Data loading functions
 async function loadData() {
     try {
-        // If the page is opened via file://, fetch() to local JSON is blocked by CORS in many browsers.
-        // Load a local JS fallback that embeds the JSON instead (see data/fallback-data.js).
         if (window.location && window.location.protocol === 'file:') {
             await loadLocalFallbackScript();
             products = window.__fiberFit_fallback?.products || [];
@@ -63,7 +61,7 @@ async function loadData() {
             return;
         }
 
-        // Production: fetch JSON files (keep content and images separate)
+        // Production: fetch JSON files (content and images separate)
         const [productsResponse, recipesResponse, blogResponse] = await Promise.all([
             fetch('data/products.json'),
             fetch('data/recipes.json'),
@@ -81,7 +79,6 @@ async function loadData() {
             recipes = window.__fiberFit_fallback.recipes || [];
             blogPosts = window.__fiberFit_fallback.blogPosts || [];
         } else {
-            // Provide empty arrays as last resort
             products = [];
             recipes = [];
             blogPosts = [];
@@ -89,7 +86,6 @@ async function loadData() {
     }
 }
 
-// Dynamically load a local JS file that defines window.__fiberFit_fallback
 function loadLocalFallbackScript() {
     return new Promise((resolve, reject) => {
         if (window.__fiberFit_fallback) return resolve();
@@ -104,7 +100,6 @@ function loadLocalFallbackScript() {
     });
 }
 
-// get current page slug
 function getCurrentPage() {
     const path = window.location.pathname;
     if (path.includes('products')) return 'products';
@@ -116,18 +111,23 @@ function getCurrentPage() {
     return 'index';
 }
 
-// Shopping Cart Functions (unchanged behavior)
-function addToCart(productId, quantity = 1, size = null) {
-    const product = products.find(p => p.id === productId);
+// Shopping Cart Functions
+function addToCart(productIdOrObj, quantity = 1, size = null) {
+    let product;
+    if (typeof productIdOrObj === 'object') {
+        product = products.find(p => p.id === productIdOrObj.id) || productIdOrObj;
+    } else {
+        product = products.find(p => p.id === productIdOrObj);
+    }
     if (!product) return;
 
-    const existingItem = cart.find(item => item.id === productId && item.size === size);
+    const existingItem = cart.find(item => item.id === product.id && item.size === size);
 
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
         cart.push({
-            id: productId,
+            id: product.id,
             name: product.name,
             price: product.price,
             image: product.image,
@@ -164,20 +164,17 @@ function updateCartDisplay() {
     const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-    // Update cart count badge
     const cartCountElements = document.querySelectorAll('.cart-count');
     cartCountElements.forEach(element => {
         element.textContent = cartCount;
         element.style.display = cartCount > 0 ? 'block' : 'none';
     });
 
-    // Update cart total
     const cartTotalElements = document.querySelectorAll('.cart-total');
     cartTotalElements.forEach(element => {
         element.textContent = `₹${cartTotal.toFixed(2)}`;
     });
 
-    // Update cart items in sidebar
     const cartItemsContainer = document.getElementById('cart-items');
     if (cartItemsContainer) {
         renderCartItems(cartItemsContainer);
@@ -250,12 +247,10 @@ function showCartNotification(productName) {
 function filterProducts(category = 'all', searchTerm = '') {
     let filteredProducts = products.slice();
 
-    // Filter by category
     if (category !== 'all') {
         filteredProducts = filteredProducts.filter(product => product.category === category);
     }
 
-    // Filter by search term
     if (searchTerm) {
         const term = searchTerm.toLowerCase();
         filteredProducts = filteredProducts.filter(product =>
@@ -268,7 +263,7 @@ function filterProducts(category = 'all', searchTerm = '') {
     return filteredProducts;
 }
 
-// Animation Functions (unchanged)
+// Animation Functions
 function initializeAnimations() {
     if (typeof anime !== 'undefined') {
         anime({
@@ -291,7 +286,7 @@ function initializeAnimations() {
     }
 }
 
-// Scroll effects (unchanged)
+// Scroll effects
 function initializeScrollEffects() {
     const observerOptions = {
         threshold: 0.1,
@@ -360,7 +355,7 @@ function animateProgressBar(element) {
     }
 }
 
-// Navigation (unchanged)
+// Navigation
 function initializeNavigation() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -402,10 +397,7 @@ function initializeNavigation() {
 }
 
 // Page-specific initialization functions
-function initializeHomePage() {
-    // keep for future home-specific features
-}
-
+function initializeHomePage() { }
 function initializeProductsPage() {
     renderProducts();
 
@@ -429,21 +421,31 @@ function applyFilters() {
     renderProducts(filteredProducts);
 }
 
-// Render products - updated to create .img-4-5 wrappers and set data-product-json
+// Render products - create full product JSON on card
 function renderProducts(productsToRender = products) {
     const container = document.getElementById('products-grid');
     if (!container) return;
 
     container.innerHTML = productsToRender.map(product => {
-        // Ensure price display
         const priceDisplay = product.price ? `₹${product.price}` : '';
+        // include full product object for modal convenience
         const productJson = JSON.stringify({
             id: product.id,
             name: product.name,
+            subtitle: product.subtitle,
             description: product.description,
             price: product.price,
+            originalPrice: product.originalPrice,
             image: product.image,
-            url: product.url || null
+            healthBenefits: product.healthBenefits || [],
+            nutritionalInfo: product.nutritionalInfo || {},
+            sizes: product.sizes || [],
+            usage: product.usage || '',
+            storage: product.storage || '',
+            shelfLife: product.shelfLife || '',
+            rating: product.rating || '',
+            reviews: product.reviews || 0,
+            inStock: product.inStock === undefined ? true : product.inStock
         });
 
         return `
@@ -597,22 +599,8 @@ function updateRecipeIngredients(recipeId, newServings) {
     }
 }
 
-function initializeWhyMilletsPage() {
-    // placeholder for charts
-}
-
-function initializeNutritionCharts() {
-    // placeholder
-}
-
-function initializeBlogPage() {
-    renderBlogPosts();
-    const categoryFilter = document.getElementById('blog-category-filter');
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', filterBlogPosts);
-    }
-}
-
+function initializeWhyMilletsPage() { }
+function initializeBlogPage() { renderBlogPosts(); }
 function renderBlogPosts(postsToRender = blogPosts) {
     const container = document.getElementById('blog-posts');
     if (!container) return;
@@ -670,81 +658,7 @@ function formatDate(dateString) {
     });
 }
 
-// Modal functions
-function showProductDetails(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const modal = createModal();
-    modal.innerHTML = `
-        <div class="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <h2 class="text-2xl font-bold text-gray-900">${product.name}</h2>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <div class="img-4-5"><img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover rounded-lg"></div>
-                    </div>
-
-                    <div>
-                        <p class="text-lg text-gray-600 mb-4">${product.subtitle}</p>
-                        <p class="text-gray-700 mb-4">${product.description}</p>
-
-                        <div class="mb-4">
-                            <h3 class="font-semibold mb-2">Health Benefits:</h3>
-                            <div class="flex flex-wrap gap-2">
-                                ${(product.healthBenefits || []).map(benefit => `<span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded">${benefit}</span>`).join('')}
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <h3 class="font-semibold mb-2">Nutritional Information (per 100g):</h3>
-                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                <div>Protein: ${product.nutritionalInfo?.protein || '-'}</div>
-                                <div>Calcium: ${product.nutritionalInfo?.calcium || '-'}</div>
-                                <div>Iron: ${product.nutritionalInfo?.iron || '-'}</div>
-                                <div>Fiber: ${product.nutritionalInfo?.fiber || '-'}</div>
-                                <div>Calories: ${product.nutritionalInfo?.calories || '-'}</div>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <h3 class="font-semibold mb-2">Available Sizes:</h3>
-                            <div class="flex gap-2">
-                                ${(product.sizes || []).map(size => `<button class="size-button border px-3 py-1 rounded text-sm hover:bg-green-100" onclick="selectSize('${size}')">${size}</button>`).join('')}
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-2xl font-bold text-green-600">₹${product.price}</span>
-                                <span class="text-lg text-gray-500 line-through">₹${product.originalPrice || ''}</span>
-                            </div>
-                            <div class="text-sm text-gray-500">
-                                ⭐ ${product.rating || ''} (${product.reviews || 0} reviews)
-                            </div>
-                        </div>
-
-                        <button onclick="addToCart('${product.id}'); closeModal();" 
-                                class="w-full bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-
-    document.body.appendChild(modal);
-}
-
+// small utility modal fallback (kept for recipes/blogs)
 function createModal() {
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
@@ -761,79 +675,8 @@ function closeModal() {
     }
 }
 
-// Utility functions (unchanged)
-function showRecipeDetails(recipeId) {
-    alert('Recipe details modal would open here. This is a demo implementation.');
-}
-
-function showBlogPost(postId) {
-    alert('Blog post modal would open here. This is a demo implementation.');
-}
-
-function selectSize(size) {
-    // Remove active class from all size buttons
-    document.querySelectorAll('.size-button').forEach(btn => {
-        btn.classList.remove('bg-green-100', 'border-green-500');
-    });
-
-    // Add active class to selected button (event.target if used in click)
-    if (window.event && window.event.target) {
-        window.event.target.classList.add('bg-green-100', 'border-green-500');
-    }
-}
-
-function compareNutrition() {
-    alert('Nutrition comparison feature would open here. This is a demo implementation.');
-}
-
-function filterBlogPosts() {
-    const category = document.getElementById('blog-category-filter')?.value || 'all';
-
-    let filteredPosts = blogPosts;
-    if (category !== 'all') {
-        filteredPosts = blogPosts.filter(post => post.category === category);
-    }
-
-    renderBlogPosts(filteredPosts);
-}
-
-// Contact form handling
-function handleContactForm(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-    showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-    event.target.reset();
-}
-
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 ${
-        type === 'success' ? 'bg-green-500 text-white' :
-        type === 'error' ? 'bg-red-500 text-white' :
-        'bg-blue-500 text-white'
-    }`;
-    notification.textContent = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.remove();
-    }, 5000);
-}
-
-// Expose functions globally
+// expose small utilities for product-image helper usage
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.updateCartQuantity = updateCartQuantity;
-window.showProductDetails = showProductDetails;
-window.showRecipeDetails = showRecipeDetails;
-window.showBlogPost = showBlogPost;
-window.addRecipeToCart = addRecipeToCart;
-window.updateRecipeIngredients = updateRecipeIngredients;
 window.closeModal = closeModal;
-window.selectSize = selectSize;
-window.compareNutrition = compareNutrition;
-window.handleContactForm = handleContactForm;
