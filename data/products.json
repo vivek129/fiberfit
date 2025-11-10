@@ -10,7 +10,7 @@
       "sizes": ["500g", "1kg", "5kg"],
       "category": "flour",
       "milletType": "ragi",
-      "image": "assets/images/products/barnyard.png",
+      "image": "assets/images/products/ragi.png",
       "healthBenefits": ["High in Calcium", "Rich in Iron", "Gluten-Free", "Diabetic-Friendly"],
       "nutritionalInfo": {
         "protein": "7.3g",
@@ -62,7 +62,7 @@
       "sizes": ["500g", "1kg", "5kg"],
       "category": "flour",
       "milletType": "bajra",
-      "image": "assets/images/products/barnyard.png",
+      "image": "assets/images/products/bajra.png",
       "healthBenefits": ["High Iron", "Energy Boosting", "Winter Food", "Gluten-Free"],
       "nutritionalInfo": {
         "protein": "11.6g",
@@ -88,7 +88,7 @@
       "sizes": ["500g", "1kg", "2kg"],
       "category": "grain",
       "milletType": "foxtail",
-      "image": "Foxtail_Millet_Grain.png",
+      "image": "assets/images/products/foxtail.png",
       "healthBenefits": ["Low Glycemic", "Diabetic Friendly", "Weight Management", "Quick Cooking"],
       "nutritionalInfo": {
         "protein": "12.3g",
@@ -114,7 +114,7 @@
       "sizes": ["500g", "1kg", "2kg"],
       "category": "grain",
       "milletType": "barnyard",
-      "image": "https://kimi-web-img.moonshot.cn/img/vetha-sorganic.com/76ad1bf8492cb2d5b777093e8e79b95b56e57154.jpg",
+      "image": "assets/images/products/barnyard.png",
       "healthBenefits": ["Highest Protein", "Fasting Food", "Light Digestion", "Low Calorie"],
       "nutritionalInfo": {
         "protein": "11.2g",
@@ -140,7 +140,7 @@
       "sizes": ["500g", "1kg", "2kg"],
       "category": "grain",
       "milletType": "kodo",
-      "image": "https://kimi-web-img.moonshot.cn/img/slurrpfarm.com/42148e4dd26dbef8412ad29ea80f6a2f08f8c130.jpg",
+      "image": "assets/images/products/kodo.png",
       "healthBenefits": ["Highest Fiber", "Digestive Health", "Weight Loss", "Heart Healthy"],
       "nutritionalInfo": {
         "protein": "8.3g",
@@ -166,7 +166,7 @@
       "sizes": ["500g", "1kg", "2kg"],
       "category": "grain",
       "milletType": "little",
-      "image": "https://kimi-web-img.moonshot.cn/img/nrootsfood.com/a849ce8a498dbc1b7233702d20c403e7c6783a84.jpg",
+      "image": "assets/images/products/little.png",
       "healthBenefits": ["Mineral Rich", "Easy Digestion", "Quick Cooking", "Daily Food"],
       "nutritionalInfo": {
         "protein": "7.7g",
@@ -192,7 +192,7 @@
       "sizes": ["500g", "1kg", "2kg"],
       "category": "grain",
       "milletType": "proso",
-      "image": "https://kimi-web-img.moonshot.cn/img/www.agmrc.org/c6d8703d28efe4977d00db54263c133bc0cd3b51.jpg",
+      "image": "assets/images/products/proso.png",
       "healthBenefits": ["Antioxidant Rich", "Versatile Cooking", "Low Fat", "Essential Amino Acids"],
       "nutritionalInfo": {
         "protein": "12.5g",
@@ -218,7 +218,7 @@
       "sizes": ["250g", "500g", "1kg"],
       "category": "grain",
       "milletType": "browntop",
-      "image": "https://kimi-web-img.moonshot.cn/img/icorganicstore.com/e13e8282132523cdd5d13b87476e27607ec8de4c.jpg",
+      "image": "assets/images/products/browntop.png",
       "healthBenefits": ["Rare Variety", "Premium Quality", "Unique Nutrition", "Limited Edition"],
       "nutritionalInfo": {
         "protein": "11.5g",
@@ -244,7 +244,7 @@
       "sizes": ["250g", "500g", "1kg"],
       "category": "seed",
       "milletType": "amaranth",
-      "image": "https://kimi-web-img.moonshot.cn/img/www.gardeningknowhow.com/6d2eb0e0a7ffa21defa513c369c4255db095c605.jpg",
+      "image": "assets/images/products/amaranth.png",
       "healthBenefits": ["Complete Protein", "All Amino Acids", "Fasting Food", "Superfood"],
       "nutritionalInfo": {
         "protein": "14.1g",
