@@ -10,7 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -116,23 +119,25 @@
            ------------------------- */
         .img-4-5 {
             width: 100%;
-            aspect-ratio: 4 / 5;           /* enforces 4:5 */
+            aspect-ratio: 4 / 5;
             overflow: hidden;
             display: block;
-            border-radius: 0.5rem;         /* rounded corners to match card */
-            background-color: #FEFCF8;     /* fallback bg while loading */
+            border-radius: 0.5rem 0.5rem 0 0;
+            background-color: #FEFCF8;
+            position: relative;
         }
         .img-4-5 img {
             width: 100%;
             height: 100%;
-            object-fit: cover;             /* crop without distortion */
+            object-fit: contain;
             object-position: center;
             display: block;
+            background-color: #FEFCF8;
         }
         /* Fallback for browsers without aspect-ratio support */
         .img-4-5.fallback {
             position: relative;
-            padding-bottom: calc(100% * 5 / 4); /* height = width * 5/4 */
+            padding-bottom: calc(100% * 5 / 4);
         }
         .img-4-5.fallback img {
             position: absolute;
@@ -140,10 +145,28 @@
             width: 100%;
             height: 100%;
         }
+        
+        /* Product card image container - ensure 4:5 ratio */
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            position: relative;
+            background-color: #FEFCF8;
+            border-radius: 0.75rem 0.75rem 0 0;
+        }
+        
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
 
         /* Modal image sizing — keep same visual ratio and center */
-        .product-modal .img-4-5 {
-            max-width: 420px;              /* control max modal image width */
+        .product-modal .product-image-container {
+            max-width: 420px;
             margin: 0 auto;
         }
 
@@ -153,12 +176,19 @@
             border-radius: 0.75rem;
             overflow: hidden;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
         }
         .product-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-        .product-card .card-body { padding: 1rem; }
+        .product-card .card-body { 
+            padding: 1rem; 
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
         /* Modal base */
         #product-modal {
@@ -166,7 +196,12 @@
         }
         /* small responsive tweak for modal layout */
         @media (max-width: 768px) {
-            .product-modal .img-4-5 { max-width: 100%; }
+            .product-modal .product-image-container { 
+                max-width: 100%; 
+            }
+            .product-image-container {
+                aspect-ratio: 4 / 5;
+            }
         }
     </style>
 </head>
@@ -360,20 +395,7 @@
 
                     <!-- Products Grid -->
                     <div id="products-grid" class="product-grid">
-                        <!-- Products will be populated by JavaScript (your existing JSON -> DOM code) -->
-                        <!-- Example of a recommended structure for each product card if you want consistency:
-                        <div class="product-card" data-product-json='{"id":1,...}'>
-                          <div class="img-4-5"><img src="..." alt="..."/></div>
-                          <div class="card-body">
-                            <h3 class="product-name">Product Name</h3>
-                            <p class="product-desc">Short description</p>
-                            <div class="flex items-center justify-between mt-3">
-                              <span class="product-price" data-price="120">₹120</span>
-                              <button data-quickview class="text-sm">Quick view</button>
-                            </div>
-                          </div>
-                        </div>
-                        -->
+                        <!-- Products will be populated by JavaScript -->
                     </div>
 
                     <!-- Load More Button -->
@@ -451,15 +473,14 @@
                         Bringing ancient wisdom to modern tables through sustainable, organic millets that nourish both body and planet.
                     </p>
                     <div class="flex space-x-4">
-                        <!-- social icons -->
-                        <a href="https://www.instagram.com/fiber_fit_aata" target="_blank" rel="noopener noreferrer" class="text-warm-sand hover:text-golden-wheat transition-colors text-xl">
-                        <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/fiber_fit_aata/" target="_blank" rel="noopener noreferrer" class="text-warm-sand hover:text-golden-wheat transition-colors text-xl">
+                            <i class="fab fa-instagram"></i>
                         </a>
                         <a href="https://www.facebook.com/profile.php?id=61582735874490" target="_blank" rel="noopener noreferrer" class="text-warm-sand hover:text-golden-wheat transition-colors text-xl">
-                        <i class="fab fa-facebook"></i>
+                            <i class="fab fa-facebook"></i>
                         </a>
                         <a href="https://youtube.com/@fibrefitaata?si=N50XGPbcqEuoyccm" target="_blank" rel="noopener noreferrer" class="text-warm-sand hover:text-golden-wheat transition-colors text-xl">
-                        <i class="fab fa-youtube"></i>
+                            <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
@@ -533,7 +554,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           <div>
-            <div id="product-modal-image" class="img-4-5">
+            <div id="product-modal-image" class="product-image-container" style="max-width: 420px; margin: 0 auto; border-radius: 0.75rem;">
               <!-- image inserted by JS: <img src="..." alt="..."> -->
             </div>
           </div>
@@ -554,19 +575,11 @@
       </div>
     </div>
 
-    <!-- Main JavaScript (your existing renderer) -->
+    <!-- Main JavaScript -->
     <script src="main.js"></script>
 
-    <!-- Non-invasive helper: wraps images into .img-4-5, attaches delegated quick-view/modal handlers -->
+    <!-- Image utilities script -->
     <script>
-    /*
-      This helper is intentionally defensive:
-      - It doesn't change how you render products from JSON.
-      - After your renderer inserts product cards into #products-grid, it will:
-        1) wrap <img> with .img-4-5 (if not already)
-        2) attach delegated click handlers to open the modal
-      - Use data-product-json on each card when possible for best results.
-    */
     (function () {
       const productsGrid = document.getElementById('products-grid');
       const modal = document.getElementById('product-modal');
@@ -581,8 +594,17 @@
 
       function normalizeProductImages() {
         if (!productsGrid) return;
+        productsGrid.querySelectorAll('.product-image-container img').forEach(img => {
+          // Images in product-image-container don't need wrapping
+          if (!img.getAttribute('alt') || img.getAttribute('alt').trim() === '') {
+            const name = img.dataset.name || img.getAttribute('title') || 'Product image';
+            img.setAttribute('alt', name);
+          }
+        });
+        
+        // Handle any standalone images not in product-image-container (legacy support)
         productsGrid.querySelectorAll('img').forEach(img => {
-          if (img.closest('.img-4-5')) return;
+          if (img.closest('.product-image-container') || img.closest('.img-4-5')) return;
 
           if (!img.getAttribute('alt') || img.getAttribute('alt').trim() === '') {
             const name = img.dataset.name || img.getAttribute('title') || 'Product image';
@@ -599,7 +621,7 @@
       function openProductModal(productData) {
         modalName.textContent = productData.name || 'Product';
         modalDesc.textContent = productData.description || productData.desc || '';
-        modalPrice.textContent = productData.price ? (productData.price_display || productData.price) : '';
+        modalPrice.textContent = productData.price ? (productData.price_display || `₹${productData.price}`) : '';
 
         modalVisit.onclick = () => {
           if (productData.url) window.location.href = productData.url;
@@ -608,7 +630,6 @@
           if (typeof addToCart === 'function') {
             addToCart(productData.id || productData.sku || productData);
           } else {
-            // fallback: if your project uses a different add-to-cart call, replace above accordingly
             console.warn('addToCart function not found; product id:', productData.id);
           }
         };
@@ -640,7 +661,7 @@
           const card = target.closest('[data-product-json]') || target.closest('[data-product-id]') || target.closest('.product-card');
           if (!card) return;
 
-          if (target.closest('[data-quickview]') || target.closest('.img-4-5') || target.matches('img')) {
+          if (target.closest('[data-quickview]') || target.closest('.product-image-container') || target.matches('img')) {
             let data = null;
             try {
               if (card.dataset.productJson) {
